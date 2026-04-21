@@ -24,7 +24,7 @@ export default function Login() {
 
   try {
 
-    const response = await fetch("https://radar360-api.onrender.com/login", {
+    const response = await fetch("https://radar360-api.onrender.com/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
