@@ -111,7 +111,9 @@ export default function Login() {
   const canvas = canvasRef.current
   if (!canvas) return
 
-  const ctx = canvas.getContext("2d")!
+  const ctx = canvas.getContext("2d")
+  if (!ctx) return
+
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
@@ -128,6 +130,8 @@ export default function Login() {
   }
 
   function draw() {
+    if (!canvas || !ctx) return
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     particles.forEach(p => {
@@ -137,7 +141,6 @@ export default function Login() {
       if (p.x < 0 || p.x > canvas.width) p.vx *= -1
       if (p.y < 0 || p.y > canvas.height) p.vy *= -1
 
-      // brilho do ponto
       const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 6)
       gradient.addColorStop(0, "#3b82f6")
       gradient.addColorStop(1, "transparent")
@@ -148,7 +151,6 @@ export default function Login() {
       ctx.fill()
     })
 
-    // conexões
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x
@@ -172,16 +174,23 @@ export default function Login() {
   }
 
   draw()
+const handleResize = () => {
+  if (!canvas) return
 
-  // RESPONSIVO
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-  })
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+}
+
+window.addEventListener("resize", handleResize)
+
+// limpeza
+return () => {
+  window.removeEventListener("resize", handleResize)
+}
 
 }, [])
 
-  return (
+   return (
     <div className="min-h-screen flex items-center justify-center bg-[#020617] text-white relative overflow-hidden">
 
       <canvas
