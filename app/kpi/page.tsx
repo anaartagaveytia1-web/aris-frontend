@@ -24,7 +24,7 @@ export default function KPI() {
       <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
      {/* HEADER */}
-<div className="mb-8 flex justify-center">
+<div className="flex justify-center">
 
   <div className="relative w-full max-w-[1400px]">
 
@@ -417,12 +417,19 @@ export default function KPI() {
               <span>{90 - i * 10}%</span>
             </div>
 
-            <div className="h-2 bg-[#020617] rounded mt-1">
+            <div className="
+  h-2
+  bg-[#020617]
+  rounded
+  mt-1
+  border border-yellow-500/10
+  shadow-inner
+">
               <div
                 className="
                 h-2 rounded
-                bg-gradient-to-r from-yellow-400 to-orange-500
-                shadow-[0_0_8px_rgba(234,179,8,0.8)]
+                bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-600
+                shadow-[0_0_12px_rgba(255,140,0,0.9)]
                 transition-all duration-500
                 "
                 style={{ width: `${90 - i * 10}%` }}
