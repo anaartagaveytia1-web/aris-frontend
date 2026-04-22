@@ -45,7 +45,7 @@ export default function GraficoRisco() {
             {/* 🔥 GRADIENTE */}
             <defs>
               <linearGradient id="colorRisco" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.4} />
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.6} />
                 <stop offset="100%" stopColor="#38bdf8" stopOpacity={0} />
               </linearGradient>
             </defs>
@@ -55,7 +55,10 @@ export default function GraficoRisco() {
 
             {/* EIXOS */}
             <XAxis dataKey="dia" stroke="#64748b" />
-            <YAxis stroke="#64748b" />
+            <YAxis
+  stroke="#64748b"
+  domain={[20, 100]}
+/>
 
             {/* TOOLTIP */}
             <Tooltip
@@ -68,11 +71,12 @@ export default function GraficoRisco() {
 
             {/* 🔥 ÁREA (COLORIDO DO MEIO) */}
             <Area
-              type="monotone"
-              dataKey="valor"
-              stroke="none"
-              fill="url(#colorRisco)"
-            />
+  type="monotone"
+  dataKey="valor"
+  stroke="none"
+  fill="url(#colorRisco)"
+  fillOpacity={1}
+/>
 
             {/* 🔥 LINHA */}
             <Line
