@@ -335,20 +335,23 @@ transition
 >
   Voltar
 </button>
-                  <button className="
-w-full
-bg-[#2563eb]
-hover:bg-[#1d4ed8]
-active:scale-[0.98]
+                 <button
+  onClick={enviar}
+  className="
+  w-full
+  bg-[#2563eb]
+  hover:bg-[#1d4ed8]
+  active:scale-[0.98]
 
-text-white
-py-3
-rounded-lg
-font-semibold
+  text-white
+  py-3
+  rounded-lg
+  font-semibold
 
-shadow-md
-transition
-">
+  shadow-md
+  transition
+  "
+>
   Enviar Relato
 </button>
                   </div>
