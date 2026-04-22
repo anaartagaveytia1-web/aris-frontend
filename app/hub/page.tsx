@@ -101,40 +101,37 @@ export default function Hub() {
     {/* IDIOMA */}
     <div className="flex gap-2">
 
-      <button
-        onClick={() => changeLang("pt")}
-        className={`px-2 py-1 rounded-md text-xs border transition
-        hover:scale-110
-        ${lang === "pt"
-          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
-          : "border-[#1f2a44] hover:border-blue-400"}`}
-      >
-        🇧🇷
-      </button>
+  <button
+    onClick={() => changeLang("pt")}
+    className={`p-1 rounded-md border transition hover:scale-110
+    ${lang === "pt"
+      ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+      : "border-[#1f2a44] hover:border-blue-400"}`}
+  >
+    <img src="https://flagcdn.com/w20/br.png" alt="pt" className="w-5 h-5" />
+  </button>
 
-      <button
-        onClick={() => changeLang("en")}
-        className={`px-2 py-1 rounded-md text-xs border transition
-        hover:scale-110
-        ${lang === "en"
-          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
-          : "border-[#1f2a44] hover:border-blue-400"}`}
-      >
-        🇺🇸
-      </button>
+  <button
+    onClick={() => changeLang("en")}
+    className={`p-1 rounded-md border transition hover:scale-110
+    ${lang === "en"
+      ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+      : "border-[#1f2a44] hover:border-blue-400"}`}
+  >
+    <img src="https://flagcdn.com/w20/us.png" alt="en" className="w-5 h-5" />
+  </button>
 
-      <button
-        onClick={() => changeLang("es")}
-        className={`px-2 py-1 rounded-md text-xs border transition
-        hover:scale-110
-        ${lang === "es"
-          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
-          : "border-[#1f2a44] hover:border-blue-400"}`}
-      >
-        🇪🇸
-      </button>
+  <button
+    onClick={() => changeLang("es")}
+    className={`p-1 rounded-md border transition hover:scale-110
+    ${lang === "es"
+      ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+      : "border-[#1f2a44] hover:border-blue-400"}`}
+  >
+    <img src="https://flagcdn.com/w20/es.png" alt="es" className="w-5 h-5" />
+  </button>
 
-    </div>
+</div>
 
   </div>
 
@@ -251,5 +248,4 @@ export default function Hub() {
 
     </div>
   )
-  }
-  
+}
