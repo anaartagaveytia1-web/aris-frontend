@@ -161,9 +161,8 @@ export default function KPI() {
         <div className="h-2 bg-gradient-to-r from-orange-400 to-yellow-300 rounded w-[54%] shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
       </div>
     </div>
-
-  </div>
-
+    </div>
+</div>
 </div>
 
         {/* 🟣 CENTRO */}
@@ -520,6 +519,8 @@ export default function KPI() {
   </div>
 
 </div>
+</div>
+
 {/* 🔥 PLANO DE AÇÃO AVANÇADO (FULL WIDTH) */}
 <div
   className="
@@ -677,11 +678,8 @@ export default function KPI() {
     </div>
 
   </div>
-
 </div>
 </div>
-</div>
-      </div>
 </div>
       </div>
   )
