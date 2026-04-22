@@ -44,6 +44,7 @@ export default function Hub() {
   function changeLang(newLang: string) {
   localStorage.setItem("aris_lang", newLang)
   setLang(newLang)
+}
 
   // 🔥 BASE DOS CARDS
   const cardBase = `
@@ -250,4 +251,5 @@ export default function Hub() {
 
     </div>
   )
-  }}
+  }
+  
