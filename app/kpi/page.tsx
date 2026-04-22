@@ -24,63 +24,50 @@ export default function KPI() {
       <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
      {/* HEADER */}
-<div className="flex justify-center">
+<div className="relative w-full flex items-center justify-center py-6 overflow-hidden">
 
-  <div className="relative w-full max-w-[1400px]">
-
-    {/* glow atrás */}
-    <div className="
-      absolute
-      inset-0
-      bg-blue-500/10
-      blur-3xl
-      opacity-60
-    " />
-
-    <div className="mb-8 flex justify-center relative w-full">
-
-  {/* glow forte atrás */}
+  {/* GLOW CENTRAL */}
   <div className="
     absolute
-    inset-0
+    w-[600px]
+    h-[200px]
     bg-cyan-500/20
     blur-[120px]
-    opacity-80
   " />
 
-  {/* linhas laterais */}
+  {/* LINHA ESQUERDA */}
   <div className="
-    absolute left-0 top-1/2 w-48 h-[2px]
-    bg-gradient-to-r from-cyan-400 to-transparent
-    opacity-40
-  "/>
+    absolute left-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
 
+  {/* LINHA DIREITA */}
   <div className="
-    absolute right-0 top-1/2 w-48 h-[2px]
-    bg-gradient-to-l from-cyan-400 to-transparent
-    opacity-40
-  "/>
+    absolute right-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
 
-  {/* imagem */}
-  <img
-    src="/aris-header.png"
-    alt="ARIS Command Intelligence"
-    className="
-      relative
-      w-full
-      max-w-[1400px]
-      object-contain
-      mx-auto
-      drop-shadow-[0_0_60px_rgba(0,200,255,0.7)]
-    "
-  />
+  {/* LOGO */}
+  <div className="relative text-center">
 
-</div>
+    <div className="
+      text-4xl md:text-5xl font-bold
+      bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500
+      bg-clip-text text-transparent
+      drop-shadow-[0_0_20px_rgba(0,200,255,0.8)]
+    ">
+      ARISS
+    </div>
+
+    <div className="text-sm text-cyan-300 tracking-widest mt-1">
+      Command Intelligence
+    </div>
 
   </div>
 
 </div>
-
       {/* GRID PRINCIPAL */}
       <div className="grid grid-cols-12 gap-6">
 

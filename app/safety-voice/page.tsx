@@ -102,7 +102,15 @@ const [form, setForm] = useState({
     ">
 
       {/* 📦 CONTEÚDO INTERNO */}
-      <div className="h-full flex flex-col justify-start pt-[180px] px-5 -translate-y-16">
+      <div className="
+relative
+h-full
+flex
+flex-col
+justify-start
+pt-[200px]
+px-5
+">
 {enviado && (
   <div className="
   bg-green-50
@@ -133,28 +141,21 @@ absolute
 top-0
 left-0
 w-full
-h-[240px]
+h-[220px]
 
 flex
 items-center
 justify-center
 
-bg-[#020617]
-overflow-hidden
+bg-gradient-to-b from-[#020617] to-[#0a0f1c]
 ">
-
-  {/* efeito tecnológico */}
-  <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_#0ea5e9,_transparent)]" />
 
   <img
     src="/logo-aris.png"
-    className="h-28 object-contain drop-shadow-[0_0_30px_rgba(56,189,248,0.8)] relative z-10"
+    className="h-24 object-contain drop-shadow-[0_0_25px_rgba(56,189,248,0.7)]"
   />
 
-  <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
-
 </div>
-
   {/* box acolhedor */}
   <div className="
   bg-blue-50
@@ -171,7 +172,7 @@ overflow-hidden
       Seu relato ajuda a melhorar a segurança no trabalho.
     </div>
   </div>
-<div className="text-center mb-6">
+<div className="text-center mb-6 mt-2">
 
   <div className="flex items-center justify-center gap-3 mb-2">
     <div className="h-[1px] w-10 bg-blue-300" />
@@ -179,12 +180,20 @@ overflow-hidden
     <div className="h-[1px] w-10 bg-blue-300" />
   </div>
 
-  <div className="text-2xl font-bold text-[#0f172a]">
+  <h1 className="text-2xl font-bold text-[#0f172a]">
     Safety Voice
-  </div>
+  </h1>
 
 </div>
-            {/* STEP 1 */}
+<div className="
+mt-2
+bg-blue-50
+border border-blue-200
+p-4
+rounded-xl
+mb-5
+"></div>
+           {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in">
 
