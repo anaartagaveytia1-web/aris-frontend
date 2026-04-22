@@ -42,8 +42,30 @@ export default function Hub() {
     window.location.href = page
   }
 
+  // 🔥 BASE DOS CARDS
+  const cardBase = `
+  relative bg-[#0f172a] 
+  border border-[#1f2a44] 
+  rounded-2xl p-5 cursor-pointer 
+  transition-all duration-300
+  hover:-translate-y-1 hover:scale-[1.02]
+  overflow-hidden
+
+  shadow-[0_10px_40px_rgba(0,0,0,0.6)]
+
+  before:absolute before:top-0 before:left-0
+  before:w-full before:h-[4px]
+  before:rounded-t-2xl
+
+  after:absolute after:inset-0
+  after:bg-gradient-to-br
+  after:from-white/5 after:to-transparent
+  after:opacity-0 hover:after:opacity-100
+  after:transition
+  `
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0b1220] to-[#020617] text-white">
+    <div className="min-h-screen text-white bg-[#020617] bg-[radial-gradient(circle_at_top,#0b1220,#020617)]">
 
       <div className="max-w-[1100px] mx-auto p-10">
 
@@ -72,95 +94,97 @@ export default function Hub() {
 
         </div>
 
-        {/* GRID PRINCIPAL */}
+        {/* GRID */}
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
 
           <div onClick={() => go("radar-ambiente.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
-            <h3 className="mb-2">Operational Environment</h3>
-            <p className="text-sm text-gray-400">Infrastructure, inspections and safety conditions</p>
+            className={`${cardBase}
+            before:bg-[#00d4b4]
+            hover:border-[#00d4b4]
+            hover:shadow-[0_0_35px_rgba(0,212,180,0.35)]`}>
+            <h3 className="mb-1 font-semibold">Operational Environment</h3>
+            <p className="text-xs text-gray-400">Infrastructure, inspections and safety conditions</p>
           </div>
 
           <div onClick={() => go("radar-psicossocial.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#a855f7]
+            hover:border-[#a855f7]
+            hover:shadow-[0_0_35px_rgba(168,85,247,0.35)]`}>
             <h3>Psychosocial Risk</h3>
-            <p className="text-sm text-gray-400">NR-01 psychosocial risk assessment</p>
+            <p className="text-xs text-gray-400">NR-01 psychosocial risk assessment</p>
           </div>
 
           <div onClick={() => go("radar-lideranca.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#facc15]
+            hover:border-[#facc15]
+            hover:shadow-[0_0_35px_rgba(250,204,21,0.35)]`}>
             <h3>Leadership & Governance</h3>
-            <p className="text-sm text-gray-400">Safety culture and leadership indicators</p>
+            <p className="text-xs text-gray-400">Safety culture and leadership indicators</p>
           </div>
 
           <div onClick={() => go("radar-rh.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#38bdf8]
+            hover:border-[#38bdf8]
+            hover:shadow-[0_0_35px_rgba(56,189,248,0.35)]`}>
             <h3>Human Resources</h3>
-            <p className="text-sm text-gray-400">Training, turnover and workforce indicators</p>
+            <p className="text-xs text-gray-400">Training, turnover and workforce indicators</p>
           </div>
 
           <div onClick={() => go("raiox_risco.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#fb7185]
+            hover:border-[#fb7185]
+            hover:shadow-[0_0_35px_rgba(251,113,133,0.35)]`}>
             <h3>Risk X-Ray</h3>
-            <p className="text-sm text-gray-400">Risk mapping by function for the PGR</p>
+            <p className="text-xs text-gray-400">Risk mapping by function for the PGR</p>
           </div>
 
           <div onClick={() => go("radar-voice.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#ec4899]
+            hover:border-[#ec4899]
+            hover:shadow-[0_0_35px_rgba(236,72,153,0.35)]`}>
             <h3>Safety Voice</h3>
-            <p className="text-sm text-gray-400">Anonymous reporting channel</p>
+            <p className="text-xs text-gray-400">Anonymous reporting channel</p>
           </div>
 
           <div onClick={() => go("radar-acao.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#5aa0ff]
+            hover:border-[#5aa0ff]
+            hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}>
             <h3>Action Plans</h3>
-            <p className="text-sm text-gray-400">Corrective and preventive action tracking</p>
+            <p className="text-xs text-gray-400">Corrective and preventive action tracking</p>
           </div>
 
           <div onClick={() => go("sesmt.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#5aa0ff]
+            hover:border-[#5aa0ff]
+            hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}>
             <h3>PGR Smart</h3>
-            <p className="text-sm text-gray-400">Documento completo</p>
+            <p className="text-xs text-gray-400">Documento completo</p>
           </div>
 
           <div onClick={() => go("aris-dashboard.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#5aa0ff]
+            hover:border-[#5aa0ff]
+            hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}>
             <h3>KPI</h3>
-            <p className="text-sm text-gray-400">Unified executive risk intelligence dashboard</p>
+            <p className="text-xs text-gray-400">Unified executive risk intelligence dashboard</p>
           </div>
 
           <div onClick={() => go("aris-ia.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5 cursor-pointer hover:-translate-y-1 transition">
+            className={`${cardBase}
+            before:bg-[#5aa0ff]
+            hover:border-[#5aa0ff]
+            hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}>
             <h3>ARISS IA</h3>
-            <p className="text-sm text-gray-400">Anticipatory Risk Intelligence Safety System</p>
-          </div>
-
-        </div>
-
-        {/* LINHA TEC */}
-        <div className="h-[2px] mt-10 mb-4 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
-
-        {/* SMF */}
-        <h2 className="text-lg mb-4 text-blue-200">Safety Mind Framework™</h2>
-
-        <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
-
-          <div onClick={() => go("fw/smf-diagnosis-manager.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5">
-            <h3>Organizational Safety Diagnosis</h3>
-            <p className="text-sm text-gray-400">Comprehensive organizational safety assessment</p>
-          </div>
-
-          <div onClick={() => go("arisscontrol/cadastro.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5">
-            <h3>ARISS Control</h3>
-            <p className="text-sm text-gray-400">Controle de ASO e Treinamento</p>
-          </div>
-
-          <div onClick={() => go("ana/empresas.html")}
-            className="bg-[#0f172a] border border-[#1f2a44] rounded-2xl p-5">
-            <h3>Área Restrita Ana</h3>
-            <p className="text-sm text-gray-400">Área de cadastro de empresas</p>
+            <p className="text-xs text-gray-400">Anticipatory Risk Intelligence Safety System</p>
           </div>
 
         </div>
@@ -177,7 +201,7 @@ export default function Hub() {
       <div className="fixed bottom-2 left-0 w-full text-center text-xs text-gray-500 pointer-events-none">
         ARIS — Anticipatory Risk Intelligence System
         <br />
-        © 2025 Safety Tech SC Engenharia de Segurança Ltda. All rights reserved.
+        © 2025 Safety Tech SC Engenharia de Segurança Ltda.
       </div>
 
     </div>
