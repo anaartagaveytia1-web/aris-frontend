@@ -2,7 +2,9 @@
 
 export default function KPI() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white p-6">
+    <div className="min-h-screen bg-[#020617] text-white flex justify-center
+bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
+  <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
       {/* HEADER */}
       <div className="mb-6">
@@ -698,6 +700,7 @@ export default function KPI() {
     </div>
 
   </div>
+</div>
 </div>
 </div>
 </div>
