@@ -102,7 +102,7 @@ const [form, setForm] = useState({
     ">
 
       {/* 📦 CONTEÚDO INTERNO */}
-      <div className="h-full flex flex-col justify-start pt-[140px] px-5">
+      <div className="h-full flex flex-col justify-start pt-[180px] px-5 -translate-y-16">
 {enviado && (
   <div className="
   bg-green-50
@@ -133,18 +133,22 @@ absolute
 top-0
 left-0
 w-full
-h-[160px]
+h-[240px]
 
 flex
 items-center
 justify-center
 
 bg-[#020617]
+overflow-hidden
 ">
+
+  {/* efeito tecnológico */}
+  <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,_#0ea5e9,_transparent)]" />
 
   <img
     src="/logo-aris.png"
-    className="h-20 object-contain drop-shadow-[0_0_20px_rgba(56,189,248,0.6)]"
+    className="h-28 object-contain drop-shadow-[0_0_30px_rgba(56,189,248,0.8)] relative z-10"
   />
 
   <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
@@ -166,11 +170,22 @@ bg-[#020617]
     <div className="text-xs text-blue-600 mt-1">
       Seu relato ajuda a melhorar a segurança no trabalho.
     </div>
+  </div>
+<div className="text-center mb-6">
 
+  <div className="flex items-center justify-center gap-3 mb-2">
+    <div className="h-[1px] w-10 bg-blue-300" />
+    <div className="text-blue-500 text-xl">🎤</div>
+    <div className="h-[1px] w-10 bg-blue-300" />
   </div>
 
+  <div className="text-2xl font-bold text-[#0f172a]">
+    Safety Voice
+  </div>
+
+</div>
             {/* STEP 1 */}
-{step === 1 && (
+            {step === 1 && (
               <div className="space-y-4 animate-fade-in">
 
                 <select
@@ -217,7 +232,19 @@ transition
                   <option>Noite</option>
                 </select>
 
-                <button onClick={next} className="btn">
+                <button onClick={next} className="
+w-full
+mt-4
+bg-gradient-to-r from-blue-600 to-cyan-400
+text-white
+py-4
+rounded-xl
+font-semibold text-lg
+shadow-[0_10px_30px_rgba(37,99,235,0.4)]
+hover:scale-[1.02]
+active:scale-[0.98]
+transition
+">
                   Próximo
                 </button>
 
@@ -286,7 +313,21 @@ transition
 >
   Voltar
 </button>
-                  <button onClick={next} className="btn">Próximo</button>
+                  <button onClick={next} className="
+w-full
+mt-4
+bg-gradient-to-r from-blue-600 to-cyan-400
+text-white
+py-4
+rounded-xl
+font-semibold text-lg
+shadow-[0_10px_30px_rgba(37,99,235,0.4)]
+hover:scale-[1.02]
+active:scale-[0.98]
+transition
+"
+>Próximo
+</button>
                 </div>
 
               </div>
@@ -379,7 +420,27 @@ transition
       </button>
 
     </div>
+<div className="
+absolute
+bottom-0
+left-0
+w-full
 
+bg-[#020617]
+py-5
+
+text-center text-gray-400 text-xs
+">
+
+  <div className="text-cyan-400 font-semibold">
+    Powered by ARIS
+  </div>
+
+  <div className="mt-1 opacity-70">
+    Advanced Risk Intelligence System
+  </div>
+
+</div>
   </div>
 )}
      </>
