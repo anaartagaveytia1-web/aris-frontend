@@ -7,7 +7,8 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid
+  CartesianGrid,
+  Area
 } from "recharts"
 
 const data = [
@@ -23,45 +24,40 @@ const data = [
 export default function GraficoRisco() {
   return (
     <div className="
-  relative
-  bg-[#020617]
-  p-0   ✅
-  border border-blue-500/30
-  rounded-lg
-  shadow-[0_0_40px_rgba(59,130,246,0.15)]
-">
+      relative
+      bg-[#020617]
+      p-0
+      border border-blue-500/30
+      rounded-lg
+      shadow-[0_0_40px_rgba(59,130,246,0.15)]
+    ">
 
       {/* título */}
       <div className="text-blue-400 mb-4 font-semibold">
         Evolução de Risco
       </div>
 
-      {/* gráfico */}
       <div className="h-64">
 
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
 
-            {/* grid */}
-            <CartesianGrid
-              stroke="#0f172a"
-              strokeDasharray="3 3"
-            />
+            {/* 🔥 GRADIENTE */}
+            <defs>
+              <linearGradient id="colorRisco" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38bdf8" stopOpacity={0.4} />
+                <stop offset="100%" stopColor="#38bdf8" stopOpacity={0} />
+              </linearGradient>
+            </defs>
 
-            {/* eixo X */}
-            <XAxis
-              dataKey="dia"
-              stroke="#64748b"
-              tick={{ fill: "#64748b", fontSize: 12 }}
-            />
+            {/* GRID */}
+            <CartesianGrid stroke="#0f172a" strokeDasharray="3 3" />
 
-            {/* eixo Y */}
-            <YAxis
-              stroke="#64748b"
-              tick={{ fill: "#64748b", fontSize: 12 }}
-            />
+            {/* EIXOS */}
+            <XAxis dataKey="dia" stroke="#64748b" />
+            <YAxis stroke="#64748b" />
 
-            {/* tooltip */}
+            {/* TOOLTIP */}
             <Tooltip
               contentStyle={{
                 backgroundColor: "#020617",
@@ -70,24 +66,29 @@ export default function GraficoRisco() {
               }}
             />
 
-            {/* linha com glow */}
+            {/* 🔥 ÁREA (COLORIDO DO MEIO) */}
+            <Area
+              type="monotone"
+              dataKey="valor"
+              stroke="none"
+              fill="url(#colorRisco)"
+            />
+
+            {/* 🔥 LINHA */}
             <Line
               type="monotone"
               dataKey="valor"
               stroke="#38bdf8"
               strokeWidth={3}
-
               style={{
                 filter: "drop-shadow(0 0 8px #38bdf8)"
               }}
-
               dot={{
                 r: 3,
                 stroke: "#38bdf8",
                 strokeWidth: 2,
                 fill: "#020617"
               }}
-
               activeDot={{
                 r: 6,
                 fill: "#38bdf8"
@@ -99,7 +100,7 @@ export default function GraficoRisco() {
 
       </div>
 
-      {/* valor final (72%) estilo HUD */}
+      {/* HUD */}
       <div className="
         absolute
         top-4
