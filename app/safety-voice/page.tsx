@@ -1,13 +1,57 @@
 "use client"
 
 import { useState } from "react"
+function FloatingInput({ label, value, onChange, textarea = false }: any) {
+  return (
+    <div className="relative">
 
+      {textarea ? (
+        <textarea
+          value={value}
+          onChange={onChange}
+          className="
+          peer w-full p-3 pt-5 bg-white border border-gray-300 rounded-lg
+          text-[#0f172a]
+          focus:outline-none focus:ring-2 focus:ring-blue-500
+          transition
+          "
+        />
+      ) : (
+        <input
+          value={value}
+          onChange={onChange}
+          className="
+          peer w-full p-3 pt-5 bg-white border border-gray-300 rounded-lg
+          text-[#0f172a]
+          focus:outline-none focus:ring-2 focus:ring-blue-500
+          transition
+          "
+        />
+      )}
+
+      <label className="
+        absolute left-3 top-2 text-xs text-gray-500
+        transition-all
+        peer-placeholder-shown:top-3.5
+        peer-placeholder-shown:text-sm
+        peer-placeholder-shown:text-gray-400
+        peer-focus:top-2
+        peer-focus:text-xs
+        peer-focus:text-blue-500
+      ">
+        {label}
+      </label>
+
+    </div>
+  )
+}
 export default function SafetyVoice() {
 
   const [step, setStep] = useState(1)
-  const [enviado, setEnviado] = useState(false)
+const [enviado, setEnviado] = useState(false)
+const [erro, setErro] = useState("")
 
-  const [form, setForm] = useState({
+const [form, setForm] = useState({
     unidade: "",
     turno: "",
     tipo: "denuncia",
@@ -24,15 +68,22 @@ export default function SafetyVoice() {
     setStep(step - 1)
   }
 
-  function enviar() {
-    setEnviado(true)
+ function enviar() {
+  if (!form.descricao) {
+    setErro("Descreva o problema antes de enviar")
+    return
   }
+
+  setErro("")
+  setEnviado(true)
+}
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-6">
 
       <div className="
-w-full max-w-[420px]
+w-full w-full max-w-[420px]
+px-2 sm:px-0
 
 bg-white
 p-6
@@ -43,27 +94,7 @@ border border-gray-200
 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
 ">
 
-        {/* SUCESSO */}
-        {enviado && (
-          <div className="
-bg-white
-border border-gray-200
-p-6
-rounded-xl
-shadow-[0_10px_25px_rgba(0,0,0,0.05)]
-transition-all
-">
-            <div className="text-green-400 text-xl font-bold mb-2">
-              ✔ Enviado com sucesso
-            </div>
-            <div className="text-sm text-gray-300">
-              Obrigado por contribuir com a segurança.
-            </div>
-          </div>
-        )}
-
-        {!enviado && (
-          <div className="
+        <div className="
 bg-green-50
 border border-green-200
 p-6
@@ -72,6 +103,16 @@ text-center
 shadow-sm
 animate-fade-in
 ">
+
+  <div className="text-green-600 text-xl font-bold mb-2">
+    ✔ Enviado com sucesso
+  </div>
+
+  <div className="text-sm text-gray-600">
+    Obrigado por contribuir com a segurança.
+  </div>
+
+</div>
 
            {/* HEADER + TOPO ACOLHEDOR */}
 <div className="mb-6">
@@ -269,7 +310,12 @@ transition
                   <option value="medio">Médio</option>
                   <option value="alto">Alto</option>
                 </select>
-
+{/* ERRO */}
+{erro && (
+  <div className="text-red-500 text-sm mb-2">
+    {erro}
+  </div>
+)}
                 <div className="flex gap-2">
                   <button className="
 w-full
@@ -288,6 +334,7 @@ transition
 w-full
 bg-[#2563eb]
 hover:bg-[#1d4ed8]
+active:scale-[0.98]
 
 text-white
 py-3
@@ -305,10 +352,6 @@ transition
             )}
 
           </div>
-        )}
-
       </div>
-
-    </div>
   )
 }
