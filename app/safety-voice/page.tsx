@@ -92,7 +92,7 @@ const [form, setForm] = useState({
     w-[360px]
     h-[720px]
 
-    bg-[#f8fafc]
+   bg-[#f8fafc] relative
 
     rounded-[30px]
     shadow-[0_20px_60px_rgba(0,0,0,0.2)]
@@ -102,7 +102,7 @@ const [form, setForm] = useState({
     ">
 
       {/* 📦 CONTEÚDO INTERNO */}
-      <div className="h-full flex flex-col justify-center px-5">
+      <div className="h-full flex flex-col justify-start pt-[140px] px-5">
 {enviado && (
   <div className="
   bg-green-50
@@ -127,14 +127,29 @@ const [form, setForm] = useState({
            {/* HEADER + TOPO ACOLHEDOR */}
            {!enviado && (
   <>
-<div className="mb-6">
+{/* 🔵 HEADER ARIS */}
+<div className="
+absolute
+top-0
+left-0
+w-full
+h-[160px]
 
-  {/* título */}
-  <div className="text-center mb-4">
-    <div className="text-xl font-bold text-[#0f172a]">
-      Safety Voice
-    </div>
-  </div>
+flex
+items-center
+justify-center
+
+bg-[#020617]
+">
+
+  <img
+    src="/logo-aris.png"
+    className="h-20 object-contain drop-shadow-[0_0_20px_rgba(56,189,248,0.6)]"
+  />
+
+  <div className="absolute bottom-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+
+</div>
 
   {/* box acolhedor */}
   <div className="
@@ -153,8 +168,6 @@ const [form, setForm] = useState({
     </div>
 
   </div>
-
-</div>
 
             {/* STEP 1 */}
 {step === 1 && (
