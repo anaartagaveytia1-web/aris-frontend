@@ -148,7 +148,7 @@ shadow-[0_10px_30px_rgba(0,0,0,0.08)]
 </div>
 
             {/* STEP 3 */}
-{step === 3 && (
+{step === 1 && (
               <div className="space-y-4 animate-fade-in">
 
                 <select
@@ -250,17 +250,18 @@ transition
                 </select>
 
                 <div className="flex gap-2">
-                  <button className="
-w-full
-bg-gray-200
-hover:bg-gray-300
-
-text-gray-800
-py-3
-rounded-lg
-
-transition
-">
+                  <button
+  onClick={back}
+  className="
+  w-full
+  bg-gray-200
+  hover:bg-gray-300
+  text-gray-800
+  py-3
+  rounded-lg
+  transition
+  "
+>
   Voltar
 </button>
                   <button onClick={next} className="btn">Próximo</button>
@@ -320,17 +321,18 @@ transition
   </div>
 )}
                 <div className="flex gap-2">
-                  <button className="
-w-full
-bg-gray-200
-hover:bg-gray-300
-
-text-gray-800
-py-3
-rounded-lg
-
-transition
-">
+                  <button
+  onClick={back}
+  className="
+  w-full
+  bg-gray-200
+  hover:bg-gray-300
+  text-gray-800
+  py-3
+  rounded-lg
+  transition
+  "
+>
   Voltar
 </button>
                   <button className="
