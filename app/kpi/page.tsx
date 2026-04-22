@@ -711,17 +711,19 @@ export default function KPI() {
               </span>
             </div>
           ))}
-
         </div>
       </div>
 
+    </div> {/* grid interno */}
+
+  </div> {/* conteúdo plano de ação */}
+
+</div> {/* 🔥 PLANO DE AÇÃO */}
+
+           </div> 
+
+      </div> 
+
     </div>
-
-  </div>
-</div>
-</div>
-</div>
-</div>
-      )
+  )
 }
-
