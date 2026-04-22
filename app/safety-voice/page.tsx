@@ -82,7 +82,7 @@ const [form, setForm] = useState({
     <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-6">
 
       <div className="
-w-full w-full max-w-[420px]
+max-w-[420px] mx-auto mt-10
 px-2 sm:px-0
 
 bg-white
@@ -94,27 +94,30 @@ border border-gray-200
 shadow-[0_10px_30px_rgba(0,0,0,0.08)]
 ">
 
-        <div className="
-bg-green-50
-border border-green-200
-p-6
-rounded-xl
-text-center
-shadow-sm
-animate-fade-in
-">
+  {enviado && (
+  <div className="
+  bg-green-50
+  border border-green-200
+  p-6
+  rounded-xl
+  text-center
+  shadow-sm
+  animate-fade-in
+  ">
 
-  <div className="text-green-600 text-xl font-bold mb-2">
-    ✔ Enviado com sucesso
+    <div className="text-green-600 text-xl font-bold mb-2">
+      ✔ Enviado com sucesso
+    </div>
+
+    <div className="text-sm text-gray-600">
+      Obrigado por contribuir com a segurança.
+    </div>
+
   </div>
-
-  <div className="text-sm text-gray-600">
-    Obrigado por contribuir com a segurança.
-  </div>
-
-</div>
-
+)}
            {/* HEADER + TOPO ACOLHEDOR */}
+           {!enviado && (
+  <>
 <div className="mb-6">
 
   {/* título */}
@@ -144,8 +147,8 @@ animate-fade-in
 
 </div>
 
-            {/* STEP 1 */}
-            {step === 1 && (
+            {/* STEP 3 */}
+{step === 3 && (
               <div className="space-y-4 animate-fade-in">
 
                 <select
@@ -346,12 +349,14 @@ transition
 ">
   Enviar Relato
 </button>
-                </div>
+                  </div>
 
               </div>
             )}
 
-          </div>
-      </div>
+  </>
+)}
+    </div>
+    </div>
   )
 }
