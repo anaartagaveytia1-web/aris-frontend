@@ -103,7 +103,7 @@ export default function KPI() {
 
 </div>
 
-          {/* SENSORES */}
+        {/* SAFETY VOICE */}
 <div
   className="
   relative
@@ -126,45 +126,64 @@ export default function KPI() {
 
   <div className="relative space-y-4 text-sm">
 
-    {/* TEMPERATURA */}
+    <div className="text-cyan-400 font-semibold">
+      Safety Voice
+    </div>
+
+    {/* TOTAL */}
+    <div className="flex justify-between">
+      <span>Total de relatos</span>
+      <span className="text-blue-400 font-bold">120</span>
+    </div>
+
+    {/* POSITIVO */}
     <div>
       <div className="flex justify-between">
-        <span>🌡 Temperatura</span>
-        <span className="text-yellow-400">31°C</span>
+        <span>Positivo</span>
+        <span className="text-green-400">51%</span>
       </div>
 
       <div className="h-2 bg-[#020617] rounded mt-1">
-        <div className="h-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded w-[75%] shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+        <div className="h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded w-[51%] shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
       </div>
     </div>
 
-    {/* RUÍDO */}
+    {/* NEGATIVO */}
     <div>
       <div className="flex justify-between">
-        <span>🔊 Ruído</span>
-        <span className="text-red-400">92 dB</span>
+        <span>Negativo</span>
+        <span className="text-red-400">49%</span>
       </div>
 
       <div className="h-2 bg-[#020617] rounded mt-1">
-        <div className="h-2 bg-gradient-to-r from-red-500 to-orange-400 rounded w-[92%] shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+        <div className="h-2 bg-gradient-to-r from-red-400 to-orange-400 rounded w-[49%] shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
       </div>
     </div>
 
-    {/* CO2 */}
-    <div>
+    {/* STATUS DE TRATAMENTO */}
+    <div className="pt-2 border-t border-cyan-400/20 text-xs space-y-1">
+
       <div className="flex justify-between">
-        <span>🫁 CO₂</span>
-        <span className="text-orange-400">840 ppm</span>
+        <span className="text-green-400">✔ Tratados</span>
+        <span>40</span>
       </div>
 
-      <div className="h-2 bg-[#020617] rounded mt-1">
-        <div className="h-2 bg-gradient-to-r from-orange-400 to-yellow-300 rounded w-[54%] shadow-[0_0_8px_rgba(251,146,60,0.8)]" />
+      <div className="flex justify-between">
+        <span className="text-yellow-400">⏳ Em andamento</span>
+        <span>20</span>
       </div>
+
+      <div className="flex justify-between">
+        <span className="text-red-400">✖ Não tratados</span>
+        <span>10</span>
+      </div>
+
     </div>
-    </div>
+
+  </div>
+
 </div>
 </div>
-
         {/* 🟣 CENTRO */}
         <div className="col-span-6 flex flex-col gap-6">
 
