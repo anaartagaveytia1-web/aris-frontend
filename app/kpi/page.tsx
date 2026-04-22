@@ -1,5 +1,7 @@
 "use client"
+
 import GraficoRisco from "./components/GraficoRisco"
+
 export default function KPI() {
 
   const risco = 72
@@ -276,7 +278,7 @@ export default function KPI() {
   ))}
 </div>
 
-          {/* EVOLUÇÃO */}
+      {/* EVOLUÇÃO */}
 <div
   className="
   relative
@@ -303,35 +305,8 @@ export default function KPI() {
       Evolução de Risco
     </div>
 
-    {/* gráfico */}
-    <div className="flex items-end gap-3 h-44">
-
-      {[20, 40, 60, 80, 50, 70, 90].map((v, i) => (
-        <div key={i} className="flex flex-col items-center gap-1">
-
-          <div
-            className="
-            w-6
-            rounded
-            bg-gradient-to-t from-blue-600 via-cyan-400 to-blue-200
-
-            shadow-[0_0_12px_rgba(56,189,248,0.9)]
-
-            transition-all duration-500
-            hover:scale-110
-            "
-            style={{ height: `${v}%` }}
-          />
-
-          {/* label pequeno */}
-          <div className="text-[10px] text-gray-500">
-            D{i + 1}
-          </div>
-
-        </div>
-      ))}
-
-    </div>
+    {/* 🔥 AQUI ENTRA O GRÁFICO REAL */}
+    <GraficoRisco />
 
   </div>
 

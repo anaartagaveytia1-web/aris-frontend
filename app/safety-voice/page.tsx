@@ -79,28 +79,31 @@ const [form, setForm] = useState({
 }
 
   return (
+  <div className="
+  min-h-screen
+  bg-[#e5e7eb]
+  flex
+  items-center
+  justify-center
+  ">
+
+    {/* 📱 MOLDURA DE APP */}
     <div className="
-min-h-screen
-bg-[#e5e7eb]
+    w-[360px]
+    h-[720px]
 
-flex
-items-center
-justify-center
-">
-      <div className="
-max-w-[420px] mx-auto mt-10
-px-2 sm:px-0
+    bg-[#f8fafc]
 
-bg-white
-p-6
-rounded-xl
+    rounded-[30px]
+    shadow-[0_20px_60px_rgba(0,0,0,0.2)]
 
-border border-gray-200
+    overflow-hidden
+    border border-gray-300
+    ">
 
-shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-">
-
-  {enviado && (
+      {/* 📦 CONTEÚDO INTERNO */}
+      <div className="h-full flex flex-col justify-center px-5">
+{enviado && (
   <div className="
   bg-green-50
   border border-green-200
@@ -153,7 +156,7 @@ shadow-[0_10px_30px_rgba(0,0,0,0.08)]
 
 </div>
 
-            {/* STEP 3 */}
+            {/* STEP 1 */}
 {step === 1 && (
               <div className="space-y-4 animate-fade-in">
 
@@ -275,16 +278,15 @@ transition
 
               </div>
             )}
+{/* STEP 3 */}
+{step === 3 && (
+  <div className="space-y-4 animate-fade-in">
 
-            {/* STEP 3 */}
-            {step === 3 && (
-              <div className="space-y-4 animate-fade-in">
-
-                <textarea
-                  placeholder="Descreva o problema..."
-                  value={form.descricao}
-                  onChange={e => setForm({ ...form, descricao: e.target.value })}
-                  className="
+    <textarea
+      placeholder="Descreva o problema..."
+      value={form.descricao}
+      onChange={e => setForm({ ...form, descricao: e.target.value })}
+      className="
 w-full
 p-3
 bg-white
@@ -297,12 +299,12 @@ focus:ring-blue-500
 focus:border-blue-500
 transition
 "
-                />
+    />
 
-                <select
-                  value={form.risco}
-                  onChange={e => setForm({ ...form, risco: e.target.value })}
-                  className="
+    <select
+      value={form.risco}
+      onChange={e => setForm({ ...form, risco: e.target.value })}
+      className="
 w-full
 p-3
 bg-white
@@ -315,59 +317,62 @@ focus:ring-blue-500
 focus:border-blue-500
 transition
 "
-                >
-                  <option value="baixo">Baixo</option>
-                  <option value="medio">Médio</option>
-                  <option value="alto">Alto</option>
-                </select>
-{/* ERRO */}
-{erro && (
-  <div className="text-red-500 text-sm mb-2">
-    {erro}
+    >
+      <option value="baixo">Baixo</option>
+      <option value="medio">Médio</option>
+      <option value="alto">Alto</option>
+    </select>
+
+    {/* ERRO */}
+    {erro && (
+      <div className="text-red-500 text-sm mb-2">
+        {erro}
+      </div>
+    )}
+
+    <div className="flex gap-2">
+
+      <button
+        onClick={back}
+        className="
+        w-full
+        bg-gray-200
+        hover:bg-gray-300
+        text-gray-800
+        py-3
+        rounded-lg
+        transition
+        "
+      >
+        Voltar
+      </button>
+
+      <button
+        onClick={enviar}
+        className="
+        w-full
+        bg-[#2563eb]
+        hover:bg-[#1d4ed8]
+        active:scale-[0.98]
+        text-white
+        py-3
+        rounded-lg
+        font-semibold
+        shadow-md
+        transition
+        "
+      >
+        Enviar Relato
+      </button>
+
+    </div>
+
   </div>
 )}
-                <div className="flex gap-2">
-                  <button
-  onClick={back}
-  className="
-  w-full
-  bg-gray-200
-  hover:bg-gray-300
-  text-gray-800
-  py-3
-  rounded-lg
-  transition
-  "
->
-  Voltar
-</button>
-                 <button
-  onClick={enviar}
-  className="
-  w-full
-  bg-[#2563eb]
-  hover:bg-[#1d4ed8]
-  active:scale-[0.98]
-
-  text-white
-  py-3
-  rounded-lg
-  font-semibold
-
-  shadow-md
-  transition
-  "
->
-  Enviar Relato
-</button>
-                  </div>
-
-              </div>
-            )}
-
-  </>
+     </>
 )}
-    </div>
-    </div>
-  )
-}
+
+      </div> 
+    </div> 
+  </div> 
+)}        

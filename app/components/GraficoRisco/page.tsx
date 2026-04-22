@@ -23,13 +23,13 @@ const data = [
 export default function GraficoRisco() {
   return (
     <div className="
-      relative
-      bg-[#020617]
-      p-6
-      border border-blue-500/30
-      rounded-lg
-      shadow-[0_0_40px_rgba(59,130,246,0.15)]
-    ">
+  relative
+  bg-[#020617]
+  p-0   ✅
+  border border-blue-500/30
+  rounded-lg
+  shadow-[0_0_40px_rgba(59,130,246,0.15)]
+">
 
       {/* título */}
       <div className="text-blue-400 mb-4 font-semibold">
