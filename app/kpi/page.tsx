@@ -26,7 +26,7 @@ export default function KPI() {
      {/* HEADER */}
 <div className="mb-8 flex justify-center">
 
-  <div className="relative w-full max-w-[900px]">
+  <div className="relative w-full max-w-[1400px]">
 
     {/* glow atrás */}
     <div className="
@@ -37,17 +37,45 @@ export default function KPI() {
       opacity-60
     " />
 
-    {/* imagem */}
-    <img
-      src="/aris-header.png"
-      alt="ARIS Command Intelligence"
-      className="
-        relative
-        w-full
-        object-contain
-        drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]
-      "
-    />
+    <div className="mb-8 flex justify-center relative w-full">
+
+  {/* glow forte atrás */}
+  <div className="
+    absolute
+    inset-0
+    bg-cyan-500/20
+    blur-[120px]
+    opacity-80
+  " />
+
+  {/* linhas laterais */}
+  <div className="
+    absolute left-0 top-1/2 w-48 h-[2px]
+    bg-gradient-to-r from-cyan-400 to-transparent
+    opacity-40
+  "/>
+
+  <div className="
+    absolute right-0 top-1/2 w-48 h-[2px]
+    bg-gradient-to-l from-cyan-400 to-transparent
+    opacity-40
+  "/>
+
+  {/* imagem */}
+  <img
+    src="/aris-header.png"
+    alt="ARIS Command Intelligence"
+    className="
+      relative
+      w-full
+      max-w-[1400px]
+      object-contain
+      mx-auto
+      drop-shadow-[0_0_60px_rgba(0,200,255,0.7)]
+    "
+  />
+
+</div>
 
   </div>
 
