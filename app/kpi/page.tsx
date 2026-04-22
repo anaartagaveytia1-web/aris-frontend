@@ -23,15 +23,35 @@ export default function KPI() {
 
       <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
-      {/* HEADER */}
-      <div className="mb-6">
-        <div className="text-[26px] font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
-          ARISS — Command Intelligence
-        </div>
-        <div className="text-sm text-gray-400">
-          Análise em tempo real e preditiva
-        </div>
-      </div>
+     {/* HEADER */}
+<div className="mb-8 flex justify-center">
+
+  <div className="relative w-full max-w-[900px]">
+
+    {/* glow atrás */}
+    <div className="
+      absolute
+      inset-0
+      bg-blue-500/10
+      blur-3xl
+      opacity-60
+    " />
+
+    {/* imagem */}
+    <img
+      src="/aris-header.png"
+      alt="ARIS Command Intelligence"
+      className="
+        relative
+        w-full
+        object-contain
+        drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]
+      "
+    />
+
+  </div>
+
+</div>
 
       {/* GRID PRINCIPAL */}
       <div className="grid grid-cols-12 gap-6">
