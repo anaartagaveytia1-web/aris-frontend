@@ -24,30 +24,44 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
 
          {/* RISCO */}
 <div
-  className="
+  className={`
   relative
   bg-[#020617]
   p-6
   transition-all duration-300
 
-  border border-red-500/30
-
-  risk-pulse
+  ${estiloRisco[nivel]}
 
   [clip-path:polygon(0_10px,10px_0,calc(100%-10px)_0,100%_10px,100%_calc(100%-10px),calc(100%-10px)_100%,10px_100%,0_calc(100%-10px))]
 
   hover:scale-[1.02]
-  "
+  `}
 >
 
   {/* linha de energia */}
-  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-400 to-transparent" />
+  <div className={`absolute top-0 left-0 w-full h-[2px]
+    bg-gradient-to-r from-transparent via-${
+      nivel === "alto" ? "red" :
+      nivel === "medio" ? "yellow" : "green"
+    }-400 to-transparent`} />
 
   <div className="relative">
-    <div className="text-red-400 font-bold">RISCO: ALTO</div>
+    <div className={`
+      font-bold
+      ${nivel === "alto" ? "text-red-400" :
+        nivel === "medio" ? "text-yellow-400" :
+        "text-green-400"}
+    `}>
+      RISCO: {nivel.toUpperCase()}
+    </div>
 
-    <div className="text-5xl text-yellow-400 font-bold mt-2 animate-pulse">
-      72%
+    <div className={`
+      text-5xl font-bold mt-2
+      ${nivel === "alto" ? "text-red-400 animate-pulse" :
+        nivel === "medio" ? "text-yellow-400" :
+        "text-green-400"}
+    `}>
+      {risco}%
     </div>
 
     <ul className="text-sm text-gray-400 mt-4 space-y-1">
