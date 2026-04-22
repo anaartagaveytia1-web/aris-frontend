@@ -138,7 +138,121 @@ export default function KPI() {
         </div>
 
       </div>
+{/* 🔥 PLANO DE AÇÃO AVANÇADO (FULL WIDTH) */}
+<div className="
+col-span-12
+bg-[#0f172a]
+p-6
+rounded-xl
+border border-blue-500/30
+shadow-[0_0_40px_rgba(59,130,246,0.2)]
+">
 
+  <div className="text-lg font-semibold mb-6">
+    Plano de Ação
+  </div>
+
+  <div className="grid grid-cols-4 gap-6">
+
+    {/* 🟢 STATUS GERAL */}
+    <div className="flex flex-col items-center justify-center">
+
+      <div className="w-24 h-24 rounded-full border-4 border-green-400 flex items-center justify-center text-xl font-bold">
+        12
+      </div>
+
+      <div className="text-xs text-gray-400 mt-2">TOTAL</div>
+
+      <div className="mt-4 text-xs space-y-1 text-center">
+        <div className="text-green-400">● 5 Tratadas</div>
+        <div className="text-yellow-400">● 4 Andamento</div>
+        <div className="text-red-400">● 3 Atraso</div>
+      </div>
+
+    </div>
+
+    {/* 🔵 POR UNIDADE */}
+    <div>
+      <div className="text-sm text-gray-400 mb-3">Por Unidade</div>
+
+      {[
+        { nome: "Unidade A", valor: 3 },
+        { nome: "Unidade B", valor: 6 },
+        { nome: "Unidade C", valor: 3 }
+      ].map((u, i) => (
+        <div key={i} className="mb-3">
+          <div className="flex justify-between text-xs">
+            <span>{u.nome}</span>
+            <span>{u.valor}</span>
+          </div>
+
+          <div className="h-2 bg-[#020617] rounded mt-1">
+            <div
+              className="h-2 bg-blue-400 rounded"
+              style={{ width: `${u.valor * 10}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* 🟣 POR TIPO */}
+    <div>
+      <div className="text-sm text-gray-400 mb-3">Por Tipo</div>
+
+      {[
+        { nome: "Ambiente", valor: 4, cor: "bg-green-400" },
+        { nome: "Máquinas", valor: 3, cor: "bg-yellow-400" },
+        { nome: "Pessoas", valor: 5, cor: "bg-red-400" }
+      ].map((t, i) => (
+        <div key={i} className="mb-3">
+          <div className="flex justify-between text-xs">
+            <span>{t.nome}</span>
+            <span>{t.valor}</span>
+          </div>
+
+          <div className="h-2 bg-[#020617] rounded mt-1">
+            <div
+              className={`h-2 ${t.cor} rounded`}
+              style={{ width: `${t.valor * 10}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* ⚡ AÇÕES RECENTES */}
+    <div>
+      <div className="text-sm text-gray-400 mb-3">Ações Recentes</div>
+
+      <div className="space-y-2 text-xs">
+
+        <div className="flex justify-between">
+          <span>Revisão sinalização</span>
+          <span className="text-yellow-400">Em andamento</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Treinamento altura</span>
+          <span className="text-red-400">Atrasada</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Manutenção equipamento</span>
+          <span className="text-green-400">Concluída</span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Adequação ergonômica</span>
+          <span className="text-yellow-400">Em andamento</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
     </div>
   )
 }
