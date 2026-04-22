@@ -52,7 +52,7 @@ export default function SafetyVoice() {
 
       {/* HEADER */}
       <h1 className="text-2xl font-bold mb-6">
-        Safety Voice (Anônimo)
+        Safety Voice 
       </h1>
       <div className="bg-[#0f172a] border border-blue-500/20 rounded-xl p-4 mb-6 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
 
