@@ -41,6 +41,9 @@ export default function Hub() {
   function go(page: string) {
     window.location.href = page
   }
+  function changeLang(newLang: string) {
+  localStorage.setItem("aris_lang", newLang)
+  setLang(newLang)
 
   // 🔥 BASE DOS CARDS
   const cardBase = `
@@ -70,30 +73,71 @@ export default function Hub() {
       <div className="max-w-[1100px] mx-auto p-10">
 
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-20 flex-wrap gap-3">
+<div className="flex justify-between items-center mb-20 flex-wrap gap-3">
 
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="text-[42px] font-black tracking-[2px] text-gray-200">
-                A<span className="text-blue-500 drop-shadow-[0_0_12px_rgba(59,130,246,0.9)]">RISS</span>
-              </div>
-              <div className="text-lg text-gray-400">Command Hub</div>
-            </div>
+  <div>
+    <div className="flex items-center gap-3">
+      <div className="text-[42px] font-black tracking-[2px] text-gray-200">
+        A<span className="text-blue-500 drop-shadow-[0_0_12px_rgba(59,130,246,0.9)]">RISS</span>
+      </div>
+      <div className="text-lg text-gray-400">Command Hub</div>
+    </div>
 
-            <div className="h-[2px] mt-6 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
-          </div>
+    <div className="h-[2px] mt-6 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse"></div>
+  </div>
 
-          <div className="flex items-center gap-4">
-            <div>
-              <div className="text-lg font-bold">{greeting()}</div>
-              <div className="text-xs text-gray-400">
-                {usuario.email || "ARIS User"}
-              </div>
-            </div>
-          </div>
+  {/* DIREITA */}
+  <div className="flex items-center gap-4">
 
-        </div>
+    {/* USER */}
+    <div className="text-right">
+      <div className="text-lg font-bold">{greeting()}</div>
+      <div className="text-xs text-gray-400">
+        {usuario.email || "ARIS User"}
+      </div>
+    </div>
 
+    {/* IDIOMA */}
+    <div className="flex gap-2">
+
+      <button
+        onClick={() => changeLang("pt")}
+        className={`px-2 py-1 rounded-md text-xs border transition
+        hover:scale-110
+        ${lang === "pt"
+          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+          : "border-[#1f2a44] hover:border-blue-400"}`}
+      >
+        🇧🇷
+      </button>
+
+      <button
+        onClick={() => changeLang("en")}
+        className={`px-2 py-1 rounded-md text-xs border transition
+        hover:scale-110
+        ${lang === "en"
+          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+          : "border-[#1f2a44] hover:border-blue-400"}`}
+      >
+        🇺🇸
+      </button>
+
+      <button
+        onClick={() => changeLang("es")}
+        className={`px-2 py-1 rounded-md text-xs border transition
+        hover:scale-110
+        ${lang === "es"
+          ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)]"
+          : "border-[#1f2a44] hover:border-blue-400"}`}
+      >
+        🇪🇸
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
         {/* GRID */}
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
 
