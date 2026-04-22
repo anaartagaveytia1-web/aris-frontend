@@ -1,5 +1,5 @@
 "use client"
-
+import GraficoRisco from "./components/GraficoRisco"
 export default function KPI() {
 
   const risco = 72

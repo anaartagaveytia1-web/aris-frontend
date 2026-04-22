@@ -79,8 +79,14 @@ const [form, setForm] = useState({
 }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-6">
+    <div className="
+min-h-screen
+bg-[#e5e7eb]
 
+flex
+items-center
+justify-center
+">
       <div className="
 max-w-[420px] mx-auto mt-10
 px-2 sm:px-0
