@@ -4,7 +4,8 @@ import { useState } from "react"
 
 export default function SafetyVoice() {
 
-  const [registros, setRegistros] = useState<any[]>([])
+  const [step, setStep] = useState(1)
+  const [enviado, setEnviado] = useState(false)
 
   const [form, setForm] = useState({
     unidade: "",
@@ -15,190 +16,159 @@ export default function SafetyVoice() {
     risco: "medio"
   })
 
-  function handleSubmit() {
-
-    if (!form.unidade || !form.turno || !form.descricao) {
-      alert("Preencha os campos obrigatórios")
-      return
-    }
-
-    const novo = {
-      ...form,
-      id: Date.now(),
-      status: "nao_tratado",
-      data: new Date().toISOString()
-    }
-
-    setRegistros([novo, ...registros])
-
-    setForm({
-      unidade: "",
-      turno: "",
-      tipo: "denuncia",
-      categoria: "pessoas",
-      descricao: "",
-      risco: "medio"
-    })
+  function next() {
+    setStep(step + 1)
   }
 
-  function atualizarStatus(id: number, status: string) {
-    setRegistros(registros.map(r =>
-      r.id === id ? { ...r, status } : r
-    ))
+  function back() {
+    setStep(step - 1)
+  }
+
+  function enviar() {
+    setEnviado(true)
   }
 
   return (
-  <div className="min-h-screen bg-[#020617] text-white p-6">
+    <div className="min-h-screen bg-[#020617] text-white p-6 flex items-center justify-center">
 
-    <div className="max-w-[700px] mx-auto"></div>
+      <div className="w-full max-w-[420px]">
 
-      {/* HEADER */}
-      <h1 className="text-2xl font-bold mb-6">
-        Safety Voice 
-      </h1>
-      <div className="bg-[#0f172a] border border-blue-500/20 rounded-xl p-4 mb-6 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+        {/* SUCESSO */}
+        {enviado && (
+          <div className="
+          bg-[#030b1a]
+          border border-green-400/30
+          p-6
+          rounded-xl
+          text-center
+          shadow-[0_0_30px_rgba(34,197,94,0.3)]
+          animate-fade-in
+          ">
+            <div className="text-green-400 text-xl font-bold mb-2">
+              ✔ Enviado com sucesso
+            </div>
+            <div className="text-sm text-gray-300">
+              Obrigado por contribuir com a segurança.
+            </div>
+          </div>
+        )}
 
-  <div className="text-sm text-gray-300">
-    Este canal é <span className="text-blue-400 font-semibold">100% anônimo</span>.
-    Seu relato ajuda a melhorar a segurança e o ambiente de trabalho.
-  </div>
+        {!enviado && (
+          <div className="
+          bg-[#030b1a]
+          border border-blue-500/10
+          p-6
+          rounded-xl
+          shadow-[0_0_20px_rgba(59,130,246,0.1)]
+          transition-all
+          ">
 
-  <div className="text-xs text-gray-500 mt-2">
-    Nenhuma informação pessoal é coletada.
-  </div>
-
-</div>
-      {/* FORMULÁRIO */}
-      <div className="
-bg-[#030b1a]
-border border-blue-500/10
-p-6
-rounded-xl
-space-y-4
-">
-
-        {/* UNIDADE */}
-        <select
-          value={form.unidade}
-          onChange={e => setForm({ ...form, unidade: e.target.value })}
-          className="w-full p-2 bg-[#020617] border border-[#1f2a44] rounded"
-        >
-          <option value="">Selecione a Unidade</option>
-          <option>Unidade A</option>
-          <option>Unidade B</option>
-          <option>Unidade C</option>
-        </select>
-
-        {/* TURNO */}
-        <select
-          value={form.turno}
-          onChange={e => setForm({ ...form, turno: e.target.value })}
-          className="w-full p-2 bg-[#020617] border border-[#1f2a44] rounded"
-        >
-          <option value="">Selecione o Turno</option>
-          <option>Manhã</option>
-          <option>Tarde</option>
-          <option>Noite</option>
-          <option>Administrativo</option>
-        </select>
-
-        {/* TIPO */}
-        <select
-          value={form.tipo}
-          onChange={e => setForm({ ...form, tipo: e.target.value })}
-          className="w-full p-2 bg-[#020617] border border-[#1f2a44] rounded"
-        >
-          <option value="denuncia">Denúncia</option>
-          <option value="risco">Risco Observado</option>
-          <option value="sugestao">Sugestão</option>
-          <option value="elogio">Elogio</option>
-        </select>
-
-        {/* CATEGORIA */}
-        <select
-          value={form.categoria}
-          onChange={e => setForm({ ...form, categoria: e.target.value })}
-          className="w-full p-2 bg-[#020617] border border-[#1f2a44] rounded"
-        >
-          <option value="pessoas">Pessoas / Comportamento</option>
-          <option value="maquinas">Máquinas</option>
-          <option value="ambiente">Ambiente</option>
-          <option value="processo">Processo</option>
-        </select>
-
-        {/* DESCRIÇÃO */}
-        <textarea
-          placeholder="Descreva o que está acontecendo..."
-          value={form.descricao}
-          onChange={e => setForm({ ...form, descricao: e.target.value })}
-          className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
-        />
-
-        {/* RISCO */}
-        <select
-          value={form.risco}
-          onChange={e => setForm({ ...form, risco: e.target.value })}
-          className="w-full p-2 bg-[#020617] border border-[#1f2a44] rounded"
-        >
-          <option value="baixo">Baixo</option>
-          <option value="medio">Médio</option>
-          <option value="alto">Alto</option>
-          <option value="critico">Crítico</option>
-        </select>
-
-        {/* BOTÃO */}
-        <button
-          onClick={handleSubmit}
-          className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded shadow-[0_0_15px_rgba(59,130,246,0.6)] transition"
-        >
-          Enviar Relato
-        </button>
-
-      </div>
-
-      {/* LISTA */}
-      <div className="space-y-4">
-
-        {registros.map(r => (
-          <div key={r.id} className="bg-[#0f172a] p-4 rounded-xl border border-[#1f2a44]">
-
-            <div className="flex justify-between text-sm">
-              <span className="text-blue-400">{r.tipo}</span>
-              <span className="text-gray-400">{r.unidade} • {r.turno}</span>
+            {/* HEADER */}
+            <div className="mb-6 text-center">
+              <div className="text-xl font-bold">
+                Safety Voice
+              </div>
+              <div className="text-xs text-gray-400">
+                100% anônimo
+              </div>
             </div>
 
-            <div className="text-xs text-gray-500 mt-1">
-              {new Date(r.data).toLocaleString()}
-            </div>
+            {/* STEP 1 */}
+            {step === 1 && (
+              <div className="space-y-4 animate-fade-in">
 
-            <div className="mt-3 text-sm">{r.descricao}</div>
+                <select
+                  value={form.unidade}
+                  onChange={e => setForm({ ...form, unidade: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                >
+                  <option value="">Unidade</option>
+                  <option>Unidade A</option>
+                  <option>Unidade B</option>
+                </select>
 
-            <div className="mt-3 text-xs">
-              Categoria: {r.categoria} • Risco: {r.risco}
-            </div>
+                <select
+                  value={form.turno}
+                  onChange={e => setForm({ ...form, turno: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                >
+                  <option value="">Turno</option>
+                  <option>Manhã</option>
+                  <option>Noite</option>
+                </select>
 
-            {/* STATUS */}
-            <div className="mt-3 flex gap-3 text-xs">
+                <button onClick={next} className="btn">
+                  Próximo
+                </button>
 
-              <button onClick={() => atualizarStatus(r.id, "tratado")} className="text-green-400">
-                ✔ Tratado
-              </button>
+              </div>
+            )}
 
-              <button onClick={() => atualizarStatus(r.id, "andamento")} className="text-yellow-400">
-                🟡 Andamento
-              </button>
+            {/* STEP 2 */}
+            {step === 2 && (
+              <div className="space-y-4 animate-fade-in">
 
-              <button onClick={() => atualizarStatus(r.id, "nao_tratado")} className="text-red-400">
-                ❌ Não tratado
-              </button>
+                <select
+                  value={form.tipo}
+                  onChange={e => setForm({ ...form, tipo: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                >
+                  <option value="denuncia">Denúncia</option>
+                  <option value="risco">Risco</option>
+                  <option value="sugestao">Sugestão</option>
+                </select>
 
-            </div>
+                <select
+                  value={form.categoria}
+                  onChange={e => setForm({ ...form, categoria: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                >
+                  <option value="pessoas">Pessoas</option>
+                  <option value="ambiente">Ambiente</option>
+                </select>
+
+                <div className="flex gap-2">
+                  <button onClick={back} className="btn-secondary">Voltar</button>
+                  <button onClick={next} className="btn">Próximo</button>
+                </div>
+
+              </div>
+            )}
+
+            {/* STEP 3 */}
+            {step === 3 && (
+              <div className="space-y-4 animate-fade-in">
+
+                <textarea
+                  placeholder="Descreva o problema..."
+                  value={form.descricao}
+                  onChange={e => setForm({ ...form, descricao: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                />
+
+                <select
+                  value={form.risco}
+                  onChange={e => setForm({ ...form, risco: e.target.value })}
+                  className="w-full p-3 bg-[#020617] border border-[#1f2a44] rounded"
+                >
+                  <option value="baixo">Baixo</option>
+                  <option value="medio">Médio</option>
+                  <option value="alto">Alto</option>
+                </select>
+
+                <div className="flex gap-2">
+                  <button onClick={back} className="btn-secondary">Voltar</button>
+                  <button onClick={enviar} className="btn">Enviar</button>
+                </div>
+
+              </div>
+            )}
 
           </div>
-        ))}
+        )}
 
       </div>
-      </div>
 
-      )
+    </div>
+  )
 }
