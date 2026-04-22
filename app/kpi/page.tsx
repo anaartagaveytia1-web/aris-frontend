@@ -1,169 +1,158 @@
 "use client"
 
+import { useEffect, useState } from "react"
+
 export default function KPI() {
 
-  function go(page: string) {
-    window.location.href = page
-  }
+  const [iaInsight, setIaInsight] = useState("")
+
+  useEffect(() => {
+    // 🔮 SIMULAÇÃO IA (depois conecta com backend)
+    setIaInsight(
+      "Alta concentração de riscos comportamentais na Unidade B. Recomenda-se reforço de supervisão, treinamento imediato e campanha de cultura de segurança."
+    )
+  }, [])
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white p-10">
+    <div className="min-h-screen bg-[#020617] text-white p-6">
 
       {/* HEADER */}
-      <div className="mb-10">
-        <h1 className="text-3xl font-bold">
-          ARISS Operacional — KPI Dashboard
-        </h1>
-        <p className="text-gray-400">
-          Visão geral de riscos, comportamento e ações
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">ARISS — Command Intelligence</h1>
+        <p className="text-gray-400 text-sm">
+          Análise em tempo real e preditiva
         </p>
       </div>
 
-      {/* SCORE PRINCIPAL */}
-      <div className="bg-[#0f172a] p-8 rounded-2xl mb-10 border border-yellow-400/30 shadow-[0_0_40px_rgba(250,204,21,0.15)]">
+      {/* GRID PRINCIPAL */}
+      <div className="grid grid-cols-12 gap-6">
 
-        <div className="text-sm text-gray-400">Score ARIS</div>
+        {/* 🔥 RISCO PRINCIPAL */}
+        <div className="col-span-4 bg-[#0f172a] p-6 rounded-xl border border-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.2)]">
 
-        <div className="text-5xl font-bold text-yellow-400">
-          72%
-        </div>
+          <div className="text-red-400 font-bold text-lg">RISCO: ALTO</div>
 
-        <div className="mt-2 text-yellow-300">
-          🟡 Atenção
-        </div>
-
-        <div className="mt-2 text-gray-400 text-sm">
-          Unidade com maior risco: Produção
-        </div>
-
-      </div>
-
-      {/* KPIs PRINCIPAIS */}
-      <div className="grid grid-cols-4 gap-6 mb-10">
-
-        {/* SAFETY VOICE */}
-        <div
-          onClick={() => go("/safety-voice")}
-          className="bg-[#0f172a] p-6 rounded-xl cursor-pointer hover:scale-[1.02] transition border border-[#1f2a44] hover:border-blue-400"
-        >
-          <h3 className="mb-2 font-semibold">Safety Voice</h3>
-
-          <p className="text-sm text-gray-400">
-            51% positivo / 49% negativo
-          </p>
-
-          <p className="text-sm text-gray-400">
-            120 participações
-          </p>
-
-          <div className="mt-3 text-xs space-y-1">
-            <div className="text-green-400">✔ 40 tratados</div>
-            <div className="text-yellow-400">🟡 20 em andamento</div>
-            <div className="text-red-400">❌ 10 não tratados</div>
-          </div>
-        </div>
-
-        {/* PSICOSSOCIAL */}
-        <div
-          onClick={() => go("/psicossocial")}
-          className="bg-[#0f172a] p-6 rounded-xl cursor-pointer hover:scale-[1.02] transition border border-[#1f2a44] hover:border-purple-400"
-        >
-          <h3 className="mb-2 font-semibold">Psicossocial</h3>
-
-          <p className="text-sm text-gray-400">
-            Score: 8.1
-          </p>
-
-          <p className="text-sm text-yellow-400 mt-2">
-            ⚠️ Maior risco:
-          </p>
-
-          <p className="text-sm">
-            Estresse ocupacional
-          </p>
-
-          <p className="text-sm text-blue-400 mt-2">
-            📋 5 planos de ação abertos
-          </p>
-        </div>
-
-        {/* ERGONOMIA */}
-        <div
-          onClick={() => go("/ergonomia")}
-          className="bg-[#0f172a] p-6 rounded-xl cursor-pointer hover:scale-[1.02] transition border border-[#1f2a44] hover:border-yellow-400"
-        >
-          <h3 className="mb-2 font-semibold">Ergonomia</h3>
-
-          <p className="text-sm text-gray-400">
-            3 riscos ativos
-          </p>
-
-          <p className="text-sm text-yellow-400 mt-2">
-            Postura inadequada
-          </p>
-        </div>
-
-        {/* AMBIENTE */}
-        <div
-          onClick={() => go("/ambiente")}
-          className="bg-[#0f172a] p-6 rounded-xl cursor-pointer hover:scale-[1.02] transition border border-[#1f2a44] hover:border-cyan-400"
-        >
-          <h3 className="mb-2 font-semibold">Ambiente</h3>
-
-          <p className="text-sm text-gray-400">
-            1 não conformidade
-          </p>
-
-          <p className="text-sm text-red-400 mt-2">
-            Falta de sinalização
-          </p>
-        </div>
-
-      </div>
-
-      {/* COMPARAÇÃO POR UNIDADE */}
-      <div className="bg-[#0f172a] p-6 rounded-2xl mb-10 border border-[#1f2a44]">
-
-        <h2 className="mb-4 font-semibold">Comparação por Unidade</h2>
-
-        <div className="space-y-2 text-sm">
-
-          <div className="flex justify-between">
-            <span>Unidade A</span>
-            <span className="text-green-400">80%</span>
+          <div className="text-4xl font-bold text-yellow-400 mt-2">
+            72%
           </div>
 
-          <div className="flex justify-between">
-            <span>Unidade B</span>
-            <span className="text-yellow-400">65%</span>
-          </div>
-
-          <div className="flex justify-between">
-            <span>Unidade C</span>
-            <span className="text-red-400">40%</span>
+          <div className="mt-4 text-sm text-gray-400">
+            Fatores:
+            <ul className="list-disc ml-4 mt-2">
+              <li>Turno noturno</li>
+              <li>Estresse ocupacional</li>
+              <li>Equipe nova</li>
+            </ul>
           </div>
 
         </div>
-      </div>
 
-      {/* PLANO DE AÇÃO */}
-      <div
-        onClick={() => go("/action-plans")}
-        className="bg-[#0f172a] p-6 rounded-2xl cursor-pointer border border-blue-500/30 hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition"
-      >
-        <h2 className="mb-3 font-semibold">Plano de Ação</h2>
+        {/* 📊 MINI KPIs */}
+        <div className="col-span-8 grid grid-cols-4 gap-4">
 
-        <p className="text-sm text-gray-400">
-          5 ações abertas
-        </p>
+          {[
+            { label: "ALERTAS", value: "128" },
+            { label: "DIAS INCIDENTE", value: "48" },
+            { label: "FADIGA", value: "69%" },
+            { label: "DENÚNCIAS", value: "120" }
+          ].map((kpi, i) => (
+            <div key={i} className="bg-[#0f172a] p-4 rounded-lg border border-blue-500/20 text-center">
+              <div className="text-xs text-gray-400">{kpi.label}</div>
+              <div className="text-2xl font-bold text-blue-400">{kpi.value}</div>
+            </div>
+          ))}
 
-        <p className="text-sm text-yellow-400 mt-2">
-          2 atrasadas
-        </p>
+        </div>
 
-        <p className="text-sm text-green-400 mt-1">
-          3 em andamento
-        </p>
+        {/* 📈 GRÁFICO SIMULADO */}
+        <div className="col-span-8 bg-[#0f172a] p-6 rounded-xl border border-blue-500/20">
+
+          <div className="mb-4 font-semibold">Evolução de Risco</div>
+
+          <div className="flex items-end gap-2 h-40">
+            {[20, 40, 60, 80, 50, 70, 90].map((v, i) => (
+              <div
+                key={i}
+                className="bg-gradient-to-t from-blue-500 to-cyan-300 w-6 rounded"
+                style={{ height: `${v}%` }}
+              />
+            ))}
+          </div>
+
+        </div>
+
+        {/* ⚠️ TOP RISCOS */}
+        <div className="col-span-4 bg-[#0f172a] p-6 rounded-xl border border-yellow-500/20">
+
+          <div className="font-semibold mb-4">Top Riscos</div>
+
+          <ul className="space-y-3 text-sm">
+            <li>⚠️ Estresse ocupacional</li>
+            <li>⚠️ Ruído elevado</li>
+            <li>⚠️ Postura inadequada</li>
+            <li>⚠️ Falta de sinalização</li>
+          </ul>
+
+        </div>
+
+        {/* 🔮 PREDITIVO */}
+        <div className="col-span-4 bg-[#0f172a] p-6 rounded-xl border border-purple-500/20">
+
+          <div className="font-semibold mb-4">Análise Preditiva</div>
+
+          <div className="space-y-2 text-sm">
+            <div>Risco em 72h: <span className="text-yellow-400">68%</span></div>
+            <div>Manutenção: <span className="text-orange-400">42%</span></div>
+            <div>Fadiga: <span className="text-red-400">32%</span></div>
+          </div>
+
+        </div>
+
+        {/* 💡 IA */}
+        <div className="col-span-8 bg-[#0f172a] p-6 rounded-xl border border-cyan-500/20">
+
+          <div className="font-semibold mb-4">Recomendação Inteligente</div>
+
+          <p className="text-sm text-gray-300 leading-relaxed">
+            {iaInsight}
+          </p>
+
+        </div>
+
+        {/* 📋 PLANO DE AÇÃO AVANÇADO */}
+        <div className="col-span-12 bg-[#0f172a] p-6 rounded-xl border border-blue-500/20">
+
+          <div className="font-semibold mb-4">Plano de Ação</div>
+
+          <div className="grid grid-cols-3 gap-6 text-sm">
+
+            {/* STATUS */}
+            <div>
+              <div className="text-gray-400 mb-2">Status</div>
+              <div className="text-green-400">✔ 5 tratadas</div>
+              <div className="text-yellow-400">🟡 4 andamento</div>
+              <div className="text-red-400">❌ 3 atraso</div>
+            </div>
+
+            {/* POR UNIDADE */}
+            <div>
+              <div className="text-gray-400 mb-2">Por Unidade</div>
+              <div>Unidade A: 3</div>
+              <div>Unidade B: 6</div>
+              <div>Unidade C: 3</div>
+            </div>
+
+            {/* POR TIPO */}
+            <div>
+              <div className="text-gray-400 mb-2">Por Tipo</div>
+              <div>Ambiente: 4</div>
+              <div>Máquinas: 3</div>
+              <div>Pessoas: 5</div>
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
