@@ -163,16 +163,16 @@ px-5
 
   {/* 🔥 LOGO CENTRAL (IMAGEM) */}
   <img
-    src="/aris-header.png"
-    alt="ARIS"
-    className="
-      relative
-      w-[500px]
-      md:w-[700px]
-      object-contain
-      drop-shadow-[0_0_40px_rgba(0,200,255,0.8)]
-    "
-  />
+  src="/logo-aris.png"
+  alt="ARIS"
+  className="
+    relative
+    w-[500px]
+    md:w-[700px]
+    object-contain
+    drop-shadow-[0_0_40px_rgba(0,200,255,0.8)]
+  "
+/>
 
 </div>
   {/* box acolhedor */}
