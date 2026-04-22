@@ -54,9 +54,20 @@ export default function SafetyVoice() {
       <h1 className="text-2xl font-bold mb-6">
         Safety Voice (Anônimo)
       </h1>
+      <div className="bg-[#0f172a] border border-blue-500/20 rounded-xl p-4 mb-6 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
 
+  <div className="text-sm text-gray-300">
+    Este canal é <span className="text-blue-400 font-semibold">100% anônimo</span>.
+    Seu relato ajuda a melhorar a segurança e o ambiente de trabalho.
+  </div>
+
+  <div className="text-xs text-gray-500 mt-2">
+    Nenhuma informação pessoal é coletada.
+  </div>
+
+</div>
       {/* FORMULÁRIO */}
-      <div className="bg-[#0f172a] p-6 rounded-xl mb-6 space-y-4 border border-blue-500/20">
+      <div className="bg-[#020617] border border-blue-500/10">
 
         {/* UNIDADE */}
         <select
