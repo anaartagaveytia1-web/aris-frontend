@@ -352,6 +352,7 @@ export default function KPI() {
   </div>
 
 </div>
+</div>
 
         {/* 🟢 DIREITA */}
         <div className="col-span-3 flex flex-col gap-6">
@@ -681,6 +682,5 @@ export default function KPI() {
 </div>
 </div>
 </div>
-      </div>
-  )
+      )
 }
