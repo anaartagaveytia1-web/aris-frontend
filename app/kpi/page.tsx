@@ -1,10 +1,25 @@
 "use client"
 
 export default function KPI() {
+
+  const risco = 72
+
+  const nivel =
+    risco < 40 ? "baixo" :
+    risco < 70 ? "medio" :
+    "alto"
+
+  const estiloRisco = {
+    baixo: "border-green-500/30",
+    medio: "border-yellow-500/30 risk-pulse-soft",
+    alto: "border-red-500/30 risk-pulse"
+  }
+
   return (
     <div className="min-h-screen bg-[#020617] text-white flex justify-center
-bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
-  <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
+    bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
+
+      <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
       {/* HEADER */}
       <div className="mb-6">
@@ -39,28 +54,42 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
 >
 
   {/* linha de energia */}
-  <div className={`absolute top-0 left-0 w-full h-[2px]
-    bg-gradient-to-r from-transparent via-${
-      nivel === "alto" ? "red" :
-      nivel === "medio" ? "yellow" : "green"
-    }-400 to-transparent`} />
+  <div
+    className={`absolute top-0 left-0 w-full h-[2px]
+    ${
+      nivel === "alto"
+        ? "bg-gradient-to-r from-transparent via-red-400 to-transparent"
+        : nivel === "medio"
+        ? "bg-gradient-to-r from-transparent via-yellow-400 to-transparent"
+        : "bg-gradient-to-r from-transparent via-green-400 to-transparent"
+    }`}
+  />
 
   <div className="relative">
-    <div className={`
-      font-bold
-      ${nivel === "alto" ? "text-red-400" :
-        nivel === "medio" ? "text-yellow-400" :
-        "text-green-400"}
-    `}>
+
+    <div
+      className={`font-bold
+      ${
+        nivel === "alto"
+          ? "text-red-400"
+          : nivel === "medio"
+          ? "text-yellow-400"
+          : "text-green-400"
+      }`}
+    >
       RISCO: {nivel.toUpperCase()}
     </div>
 
-    <div className={`
-      text-5xl font-bold mt-2
-      ${nivel === "alto" ? "text-red-400 animate-pulse" :
-        nivel === "medio" ? "text-yellow-400" :
-        "text-green-400"}
-    `}>
+    <div
+      className={`text-5xl font-bold mt-2
+      ${
+        nivel === "alto"
+          ? "text-red-400 animate-pulse"
+          : nivel === "medio"
+          ? "text-yellow-400"
+          : "text-green-400"
+      }`}
+    >
       {risco}%
     </div>
 
@@ -69,8 +98,8 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
       <li>• Estresse ocupacional</li>
       <li>• Equipe nova</li>
     </ul>
-  </div>
 
+  </div>
 </div>
 
           {/* FADIGA */}
@@ -720,3 +749,4 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
 </div>
       )
 }
+
