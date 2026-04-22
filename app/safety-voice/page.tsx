@@ -48,7 +48,9 @@ export default function SafetyVoice() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white p-6">
+  <div className="min-h-screen bg-[#020617] text-white p-6">
+
+    <div className="max-w-[700px] mx-auto"></div>
 
       {/* HEADER */}
       <h1 className="text-2xl font-bold mb-6">
@@ -67,7 +69,13 @@ export default function SafetyVoice() {
 
 </div>
       {/* FORMULÁRIO */}
-      <div className="bg-[#020617] border border-blue-500/10">
+      <div className="
+bg-[#030b1a]
+border border-blue-500/10
+p-6
+rounded-xl
+space-y-4
+">
 
         {/* UNIDADE */}
         <select
@@ -190,7 +198,7 @@ export default function SafetyVoice() {
         ))}
 
       </div>
+      </div>
 
-    </div>
-  )
+      )
 }
