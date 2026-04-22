@@ -22,7 +22,7 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
         {/* 🔵 ESQUERDA */}
         <div className="col-span-3 flex flex-col gap-6">
 
-          {/* RISCO */}
+         {/* RISCO */}
 <div
   className="
   relative
@@ -32,10 +32,10 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
 
   border border-red-500/30
 
+  risk-pulse
+
   [clip-path:polygon(0_10px,10px_0,calc(100%-10px)_0,100%_10px,100%_calc(100%-10px),calc(100%-10px)_100%,10px_100%,0_calc(100%-10px))]
 
-  shadow-[0_0_25px_rgba(239,68,68,0.2)]
-  hover:shadow-[0_0_60px_rgba(239,68,68,0.7)]
   hover:scale-[1.02]
   "
 >
@@ -46,7 +46,7 @@ bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
   <div className="relative">
     <div className="text-red-400 font-bold">RISCO: ALTO</div>
 
-    <div className="text-5xl text-yellow-400 font-bold mt-2">
+    <div className="text-5xl text-yellow-400 font-bold mt-2 animate-pulse">
       72%
     </div>
 
