@@ -136,23 +136,42 @@ px-5
            {!enviado && (
   <>
 {/* 🔵 HEADER ARIS */}
-<div className="
-absolute
-top-0
-left-0
-w-full
-h-[220px]
+<div className="relative w-full flex items-center justify-center py-6 overflow-hidden">
 
-flex
-items-center
-justify-center
+  {/* GLOW CENTRAL */}
+  <div className="
+    absolute
+    w-[600px]
+    h-[200px]
+    bg-cyan-500/20
+    blur-[120px]
+  " />
 
-bg-gradient-to-b from-[#020617] to-[#0a0f1c]
-">
+  {/* LINHA ESQUERDA */}
+  <div className="
+    absolute left-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
 
+  {/* LINHA DIREITA */}
+  <div className="
+    absolute right-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
+
+  {/* 🔥 LOGO CENTRAL (IMAGEM) */}
   <img
-    src="/logo-aris.png"
-    className="h-24 object-contain drop-shadow-[0_0_25px_rgba(56,189,248,0.7)]"
+    src="/aris-header.png"
+    alt="ARIS"
+    className="
+      relative
+      w-[500px]
+      md:w-[700px]
+      object-contain
+      drop-shadow-[0_0_40px_rgba(0,200,255,0.8)]
+    "
   />
 
 </div>
@@ -192,7 +211,8 @@ border border-blue-200
 p-4
 rounded-xl
 mb-5
-"></div>
+">
+</div>
            {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in">
