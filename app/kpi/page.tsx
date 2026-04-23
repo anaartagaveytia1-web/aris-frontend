@@ -54,7 +54,7 @@ export default function KPI() {
   <img
     src="/logo-aris.png"
     alt="Logo ARIS"
-    className="h-16 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(0,200,255,0.6)]"
+    className="h-24 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(0,200,255,0.6)]"
   />
 </div>
 </div>
