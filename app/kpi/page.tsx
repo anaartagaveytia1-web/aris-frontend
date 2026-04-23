@@ -26,87 +26,124 @@ export default function KPI() {
      {/* HEADER */}
 <div className="relative w-full flex items-center justify-center py-6 overflow-hidden">
 
-  {/* GLOW CENTRAL */}
+  {/* 🔥 GLOW CENTRAL PULSANTE */}
   <div className="
     absolute
     w-[600px]
     h-[200px]
     bg-cyan-500/20
     blur-[120px]
+    animate-pulse
   " />
 
-  {/* LINHA ESQUERDA */}
+  {/* ⚡ LINHA ESQUERDA */}
   <div className="
     absolute left-0 top-1/2 w-[40%] h-[2px]
     bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
     opacity-60
+    animate-pulse
   " />
 
-  {/* LINHA DIREITA */}
+  {/* ⚡ LINHA DIREITA */}
   <div className="
     absolute right-0 top-1/2 w-[40%] h-[2px]
     bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
     opacity-60
+    animate-pulse
   " />
+
   {/* 🟢 ESQUERDA — CLIENTE */}
-  <div className="absolute left-6 z-10 flex items-center gap-2">
+  <div className="absolute left-6 z-10 flex items-center gap-3">
 
-    <span className="text-cyan-400 text-xs opacity-70">
-      Cliente:
-    </span>
+    <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
 
-    <span className="text-white font-semibold text-lg">
-      Safety Tech SC
-    </span>
+    <div>
+      <div className="text-xs text-cyan-400 opacity-70">
+        Cliente
+      </div>
+      <div className="text-white font-semibold text-lg tracking-wide">
+        Safety Tech SC
+      </div>
+    </div>
 
   </div>
 
-  {/* LOGO */}
-<div className="relative flex justify-center items-center">
-  <img
-    src="/logo-aris.png"
-    alt="Logo ARIS"
-    className="h-24 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(0,200,255,0.6)]"
-  />
-</div>
- {/* 🔵 DIREITA — DATA + UNIDADE */}
-  <div className="absolute right-6 z-10 flex items-center gap-3">
+  {/* 🔥 CENTRO — LOGO COM VIDA */}
+  <div className="relative z-10 flex flex-col items-center">
 
-    {/* DATA */}
-    <input
-      type="date"
+    <img
+      src="/logo-aris.png"
+      alt="Logo ARIS"
       className="
-      bg-[#020617]
-      border border-cyan-400/30
-      text-cyan-300
-      text-sm
-      px-3 py-2
-      rounded-lg
-      focus:outline-none
-      focus:ring-2
-      focus:ring-cyan-400
+        h-24 md:h-32
+        object-contain
+        drop-shadow-[0_0_25px_rgba(0,200,255,0.8)]
+        hover:scale-105
+        transition
       "
     />
 
-    {/* UNIDADE */}
-    <select
-      className="
-      bg-[#020617]
-      border border-cyan-400/30
-      text-cyan-300
-      text-sm
-      px-4 py-2
-      rounded-lg
-      focus:outline-none
-      focus:ring-2
-      focus:ring-cyan-400
-      "
-    >
-      <option>Unidade A</option>
-      <option>Unidade B</option>
-      <option>Unidade C</option>
-    </select>
+    <div className="text-cyan-400 text-xs mt-1 tracking-widest opacity-70">
+      COMMAND INTELLIGENCE
     </div>
+
+  </div>
+
+  {/* 🔵 DIREITA — CONTROLES */}
+  <div className="absolute right-6 z-10 flex items-center gap-3">
+
+    {/* DATA */}
+    <div className="flex items-center gap-1">
+
+      <span className="text-cyan-400 text-sm">📅</span>
+
+      <input
+        type="date"
+        className="
+        bg-[#020617]
+        border border-cyan-400/30
+        text-cyan-300
+        text-sm
+        px-2 py-1
+        rounded-lg
+        focus:outline-none
+        focus:ring-2
+        focus:ring-cyan-400
+        hover:border-cyan-300
+        transition
+        "
+      />
+
+    </div>
+
+    {/* UNIDADE */}
+    <div className="flex items-center gap-1">
+
+      <span className="text-cyan-400 text-sm">🏢</span>
+
+      <select
+        className="
+        bg-[#020617]
+        border border-cyan-400/30
+        text-cyan-300
+        text-sm
+        px-3 py-2
+        rounded-lg
+        focus:outline-none
+        focus:ring-2
+        focus:ring-cyan-400
+        hover:border-cyan-300
+        transition
+        "
+      >
+        <option>Unidade A</option>
+        <option>Unidade B</option>
+        <option>Unidade C</option>
+      </select>
+
+    </div>
+
+  </div>
 
 </div>
       {/* GRID PRINCIPAL */}
