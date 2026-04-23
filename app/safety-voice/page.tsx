@@ -441,23 +441,24 @@ transition
       </button>
 
     </div>
+    
+{/* FOOTER */}
 <div className="
-absolute
-bottom-0
-left-0
-w-full
-
-bg-[#020617]
-py-5
-
-text-center text-gray-400 text-xs
+  absolute
+  bottom-0
+  w-full
+  bg-[#020617]
+  py-5
+  text-center
+  text-gray-400
+  text-xs
 ">
 
   <div className="text-cyan-400 font-semibold">
     Powered by ARIS
   </div>
 
-  <div className="mt-1 opacity-70">
+  <div className="opacity-70">
     Advanced Risk Intelligence System
   </div>
 
@@ -470,4 +471,5 @@ text-center text-gray-400 text-xs
       </div> 
     </div> 
   </div> 
-)}        
+  )
+}        
