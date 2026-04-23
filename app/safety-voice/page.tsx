@@ -101,130 +101,109 @@ const [form, setForm] = useState({
     border border-gray-300
     ">
 
-{/* 📦 CONTEÚDO */}
-<div className="relative h-full flex flex-col">
-
-  {/* 🔵 HEADER ESCURO */}
+      {/* 📦 CONTEÚDO INTERNO */}
+      <div className="
+relative
+h-full
+flex
+flex-col
+justify-start
+px-5
+">
+{enviado && (
   <div className="
-    bg-[#020617]
-    pt-10 pb-16
-    px-5
-    relative
-    overflow-hidden
+  bg-green-50
+  border border-green-200
+  p-6
+  rounded-xl
+  text-center
+  shadow-sm
+  animate-fade-in
   ">
 
-    {/* glow */}
-    <div className="absolute w-[300px] h-[120px] bg-cyan-500/20 blur-[100px]" />
-
-    {/* logo */}
-    <img
-      src="/logo-aris.png"
-      className="w-[220px] mx-auto relative z-10"
-    />
-
-  </div>
-
-  {/* 📄 CARD BRANCO */}
-  <div className="
-    flex-1
-    bg-[#f8fafc]
-    rounded-t-[30px]
-    -mt-10
-    px-5
-    pt-6
-    pb-24
-  ">
-
-    {/* Ícone + título */}
-    <div className="text-center mb-6">
-
-      <div className="flex items-center justify-center gap-3 mb-2">
-        <div className="h-[1px] w-10 bg-blue-300" />
-        <div className="text-blue-500 text-xl">🎤</div>
-        <div className="h-[1px] w-10 bg-blue-300" />
-      </div>
-
-      <h1 className="text-2xl font-bold text-[#0f172a]">
-        Safety Voice
-      </h1>
-
+    <div className="text-green-600 text-xl font-bold mb-2">
+      ✔ Enviado com sucesso
     </div>
 
-    {/* BOX ANÔNIMO */}
-    <div className="
-      bg-blue-50
-      border border-blue-200
-      p-4
-      rounded-xl
-      mb-5
-      flex gap-3 items-start
-    ">
-
-      <div className="text-blue-500 text-xl">🔒</div>
-
-      <div>
-        <div className="text-sm font-semibold text-blue-700">
-          Canal 100% anônimo
-        </div>
-
-        <div className="text-xs text-blue-600">
-          Seu relato ajuda a melhorar a segurança no trabalho.
-        </div>
-      </div>
-
-    </div>
-
-    {/* CAMPOS */}
-    <div className="space-y-4">
-
-      <select className="w-full p-3 bg-white border border-gray-300 rounded-xl">
-        <option>Unidade</option>
-      </select>
-
-      <select className="w-full p-3 bg-white border border-gray-300 rounded-xl">
-        <option>Turno</option>
-      </select>
-
-      <button className="
-        w-full
-        mt-4
-        bg-gradient-to-r from-blue-600 to-cyan-400
-        text-white
-        py-4
-        rounded-xl
-        font-semibold
-        text-lg
-        shadow-lg
-      ">
-        Próximo →
-      </button>
-
+    <div className="text-sm text-gray-600">
+      Obrigado por contribuir com a segurança.
     </div>
 
   </div>
+)}
+           {/* HEADER + TOPO ACOLHEDOR */}
+           {!enviado && (
+  <>
+{/* 🔵 HEADER NOVO */}
+<div className="
+  bg-[#020617]
+  pt-10 pb-16
+  px-5
+  relative
+  overflow-hidden
+">
 
-  {/* 🔻 FOOTER */}
+  {/* glow */}
+  <div className="absolute w-[300px] h-[120px] bg-cyan-500/20 blur-[100px]" />
+
+  {/* LINHA ESQUERDA */}
   <div className="
-    absolute
-    bottom-0
-    w-full
-    bg-[#020617]
-    py-5
-    text-center
-    text-gray-400
-    text-xs
+    absolute left-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
+
+  {/* LINHA DIREITA */}
+  <div className="
+    absolute right-0 top-1/2 w-[40%] h-[2px]
+    bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
+    opacity-60
+  " />
+
+ {/* logo */}
+  <img
+    src="/logo-aris.png"
+    className="w-[220px] mx-auto relative z-10"
+  />
+</div>
+
+  {/* box acolhedor */}
+  <div className="
+  bg-blue-50
+  border border-blue-200
+  p-4
+  rounded-lg
   ">
 
-    <div className="text-cyan-400 font-semibold">
-      Powered by ARIS
+    <div className="text-sm text-blue-700 font-medium">
+      Canal 100% anônimo
     </div>
 
-    <div className="opacity-70">
-      Advanced Risk Intelligence System
+    <div className="text-xs text-blue-600 mt-1">
+      Seu relato ajuda a melhorar a segurança no trabalho.
     </div>
+  </div>
+<div className="text-center mb-6 mt-2">
 
+  <div className="flex items-center justify-center gap-3 mb-2">
+    <div className="h-[1px] w-10 bg-blue-300" />
+    <div className="text-blue-500 text-xl">🎤</div>
+    <div className="h-[1px] w-10 bg-blue-300" />
   </div>
 
+  <h1 className="text-2xl font-bold text-[#0f172a]">
+    Safety Voice
+  </h1>
+
+</div>
+<div className="
+mt-2
+bg-blue-50
+border border-blue-200
+p-4
+rounded-xl
+mb-5
+">
 </div>
            {/* STEP 1 */}
             {step === 1 && (
@@ -484,4 +463,11 @@ text-center text-gray-400 text-xs
 
 </div>
   </div>
+)}
+     </>
+)}
+
+      </div> 
+    </div> 
+  </div> 
 )}        
