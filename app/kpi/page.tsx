@@ -436,6 +436,7 @@ const naoTratados = totalRelatos - tratados - andamento
   </div>
 
 </div>
+</div>
         {/* 🟣 CENTRO */}
         <div className="col-span-6 flex flex-col gap-6">
 
@@ -937,6 +938,6 @@ const naoTratados = totalRelatos - tratados - andamento
       </div> 
 
     </div>
-    </div>
+  
   )
 }
