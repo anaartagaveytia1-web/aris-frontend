@@ -48,6 +48,18 @@ export default function KPI() {
     bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
     opacity-60
   " />
+  {/* 🟢 ESQUERDA — CLIENTE */}
+  <div className="absolute left-6 z-10 flex items-center gap-2">
+
+    <span className="text-cyan-400 text-xs opacity-70">
+      Cliente:
+    </span>
+
+    <span className="text-white font-semibold text-lg">
+      Safety Tech SC
+    </span>
+
+  </div>
 
   {/* LOGO */}
 <div className="relative flex justify-center items-center">
@@ -57,6 +69,45 @@ export default function KPI() {
     className="h-24 md:h-32 object-contain drop-shadow-[0_0_20px_rgba(0,200,255,0.6)]"
   />
 </div>
+ {/* 🔵 DIREITA — DATA + UNIDADE */}
+  <div className="absolute right-6 z-10 flex items-center gap-3">
+
+    {/* DATA */}
+    <input
+      type="date"
+      className="
+      bg-[#020617]
+      border border-cyan-400/30
+      text-cyan-300
+      text-sm
+      px-3 py-2
+      rounded-lg
+      focus:outline-none
+      focus:ring-2
+      focus:ring-cyan-400
+      "
+    />
+
+    {/* UNIDADE */}
+    <select
+      className="
+      bg-[#020617]
+      border border-cyan-400/30
+      text-cyan-300
+      text-sm
+      px-4 py-2
+      rounded-lg
+      focus:outline-none
+      focus:ring-2
+      focus:ring-cyan-400
+      "
+    >
+      <option>Unidade A</option>
+      <option>Unidade B</option>
+      <option>Unidade C</option>
+    </select>
+    </div>
+
 </div>
       {/* GRID PRINCIPAL */}
       <div className="grid grid-cols-12 gap-6">
