@@ -39,8 +39,8 @@ export default function Hub() {
   }
 
   function go(page: string) {
-    window.location.href = page
-  }
+  router.push(page)
+}
   function changeLang(newLang: string) {
   localStorage.setItem("aris_lang", newLang)
   setLang(newLang)
@@ -184,7 +184,7 @@ export default function Hub() {
             <p className="text-xs text-gray-400">Risk mapping by function for the PGR</p>
           </div>
 
-          <div onClick={() => go("radar-voice.html")}
+          <div onClick={() => router.push("/safety-voice")}
             className={`${cardBase}
             before:bg-[#ec4899]
             hover:border-[#ec4899]
