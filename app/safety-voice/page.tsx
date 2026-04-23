@@ -129,7 +129,22 @@ const [form, setForm] = useState({
   </div>
 ) : (
   <>
-  {/* BOX */}
+  
+  {/* TÍTULO */}
+  <div className="text-center mb-6">
+
+    <div className="flex items-center justify-center gap-3 mb-2">
+      <div className="h-[1px] w-10 bg-blue-300" />
+      <div className="text-blue-500 text-xl">🎤</div>
+      <div className="h-[1px] w-10 bg-blue-300" />
+    </div>
+
+    <h1 className="text-2xl font-bold text-[#0f172a]">
+      Safety Voice
+    </h1>
+
+  </div>
+ {/* BOX */}
   <div className="
     bg-blue-50
     border border-blue-200
@@ -147,22 +162,6 @@ const [form, setForm] = useState({
     </div>
 
   </div>
-
-  {/* TÍTULO */}
-  <div className="text-center mb-6">
-
-    <div className="flex items-center justify-center gap-3 mb-2">
-      <div className="h-[1px] w-10 bg-blue-300" />
-      <div className="text-blue-500 text-xl">🎤</div>
-      <div className="h-[1px] w-10 bg-blue-300" />
-    </div>
-
-    <h1 className="text-2xl font-bold text-[#0f172a]">
-      Safety Voice
-    </h1>
-
-  </div>
-
            {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in">
