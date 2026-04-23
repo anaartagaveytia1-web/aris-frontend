@@ -50,23 +50,13 @@ export default function KPI() {
   " />
 
   {/* LOGO */}
-  <div className="relative text-center">
-
-    <div className="
-      text-4xl md:text-5xl font-bold
-      bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500
-      bg-clip-text text-transparent
-      drop-shadow-[0_0_20px_rgba(0,200,255,0.8)]
-    ">
-      ARISS
-    </div>
-
-    <div className="text-sm text-cyan-300 tracking-widest mt-1">
-      Command Intelligence
-    </div>
-
-  </div>
-
+<div className="relative flex justify-center items-center">
+  <img
+    src="/logo-aris.png"
+    alt="Logo ARIS"
+    className="h-16 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(0,200,255,0.6)]"
+  />
+</div>
 </div>
       {/* GRID PRINCIPAL */}
       <div className="grid grid-cols-12 gap-6">
