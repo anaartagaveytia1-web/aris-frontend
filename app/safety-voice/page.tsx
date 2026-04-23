@@ -102,23 +102,22 @@ const [form, setForm] = useState({
     ">
 
       {/* 📦 CONTEÚDO INTERNO */}
-      <div className="
-relative
-h-full
-flex
-flex-col
-justify-start
-px-5
+<div className="
+  h-full
+  flex
+  flex-col
+  justify-between
+  px-5
+  py-6
 ">
-{enviado && (
+{enviado ? (
   <div className="
-  bg-green-50
-  border border-green-200
-  p-6
-  rounded-xl
-  text-center
-  shadow-sm
-  animate-fade-in
+    bg-green-50
+    border border-green-200
+    p-6
+    rounded-xl
+    text-center
+    shadow-sm
   ">
 
     <div className="text-green-600 text-xl font-bold mb-2">
@@ -130,7 +129,7 @@ px-5
     </div>
 
   </div>
-)}
+) : (
            {/* HEADER + TOPO ACOLHEDOR */}
            {!enviado && (
   <>
@@ -443,33 +442,21 @@ transition
     </div>
     
 {/* FOOTER */}
-<div className="
-  absolute
-  bottom-0
-  w-full
-  bg-[#020617]
-  py-5
-  text-center
-  text-gray-400
-  text-xs
-">
+      <div className="text-center text-xs text-gray-400">
 
-  <div className="text-cyan-400 font-semibold">
-    Powered by ARIS
-  </div>
+        <div className="text-blue-500 font-semibold">
+          ARIS
+        </div>
 
-  <div className="opacity-70">
-    Advanced Risk Intelligence System
-  </div>
+        <div className="opacity-70">
+          Safety System
+        </div>
+
+      </div>
+
+    </>
+  )}
 
 </div>
-  </div>
-)}
-     </>
-)}
-
-      </div> 
-    </div> 
-  </div> 
-  )
-}        
+           )}
+           

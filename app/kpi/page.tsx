@@ -24,7 +24,7 @@ export default function KPI() {
       <div className="w-full max-w-[1600px] p-6 rounded-xl border border-cyan-500/20 shadow-[0_0_80px_rgba(0,200,255,0.15)]">
 
      {/* HEADER */}
-<div className="relative w-full flex items-center justify-center py-6 overflow-hidden">
+<div className="relative w-full flex items-center justify-center py-10 overflow-hidden">
 
   {/* 🔥 GLOW CENTRAL PULSANTE */}
   <div className="
@@ -38,7 +38,7 @@ export default function KPI() {
 
   {/* ⚡ LINHA ESQUERDA */}
   <div className="
-    absolute left-0 top-1/2 w-[40%] h-[2px]
+    absolute left-0 top-[65%] w-[40%] h-[2px]
     bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
     opacity-60
     animate-pulse
@@ -46,7 +46,7 @@ export default function KPI() {
 
   {/* ⚡ LINHA DIREITA */}
   <div className="
-    absolute right-0 top-1/2 w-[40%] h-[2px]
+    absolute right-0 top-[65%] w-[40%] h-[2px]
     bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
     opacity-60
     animate-pulse
