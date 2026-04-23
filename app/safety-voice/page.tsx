@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { supabase } from "@/lib/supabase"
 function FloatingInput({ label, value, onChange, textarea = false }: any) {
   return (
     <div className="relative">
@@ -68,9 +69,28 @@ const [form, setForm] = useState({
     setStep(step - 1)
   }
 
- function enviar() {
+ async function enviar() {
   if (!form.descricao) {
     setErro("Descreva o problema antes de enviar")
+    return
+  }
+
+  const { error } = await supabase
+    .from("eventos_risco")
+    .insert([
+      {
+        cliente: "Safety Tech SC",
+        unidade: form.unidade,
+        tipo: form.tipo,
+        categoria: form.categoria,
+        risco: form.risco,
+        descricao: form.descricao
+      }
+    ])
+
+  if (error) {
+    console.error("Erro Supabase:", error)
+    setErro("Erro ao enviar")
     return
   }
 
