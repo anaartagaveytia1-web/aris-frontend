@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 import GraficoRisco from "./components/GraficoRisco"
-
+import { useRouter } from "next/navigation"
 export default function KPI() {
+  const router = useRouter()  
 
   const [dados, setDados] = useState<any[]>([])
 
@@ -341,26 +342,31 @@ const naoTratados = totalRelatos - tratados - andamento
 </div>
 
        {/* SAFETY VOICE */}
-className={`
-  relative
-  bg-[#020617]
-  p-4
-  transition-all duration-300
+<div
+  onClick={() => router.push("/safety-voice/manage")}
+  className={`
+    relative
+    bg-[#020617]
+    p-4
+    cursor-pointer
+    transition-all duration-300
 
-  ${
-    percentualNegativo > 50
-      ? "border-red-500/40"
-      : percentualNegativo > 30
-      ? "border-yellow-500/40"
-      : "border-cyan-400/30"
-  }
+    ${
+      percentualNegativo > 50
+        ? "border-red-500/40"
+        : percentualNegativo > 30
+        ? "border-yellow-500/40"
+        : "border-cyan-400/30"
+    }
 
-  [clip-path:polygon(0_10px,10px_0,calc(100%-10px)_0,100%_10px,100%_calc(100%-10px),calc(100%-10px)_100%,10px_100%,0_calc(100%-10px))]
+    [clip-path:polygon(0_10px,10px_0,calc(100%-10px)_0,100%_10px,100%_calc(100%-10px),calc(100%-10px)_100%,10px_100%,0_calc(100%-10px))]
 
-  shadow-[0_0_25px_rgba(34,211,238,0.2)]
-  hover:shadow-[0_0_50px_rgba(34,211,238,0.7)]
-  hover:scale-[1.02]
-`}
+    shadow-[0_0_25px_rgba(34,211,238,0.2)]
+    hover:shadow-[0_0_50px_rgba(34,211,238,0.7)]
+    hover:scale-[1.02]
+    active:scale-[0.97]
+  `}
+>
 
   {/* linha de energia */}
   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
@@ -930,6 +936,7 @@ className={`
 
       </div> 
 
+    </div>
     </div>
   )
 }
