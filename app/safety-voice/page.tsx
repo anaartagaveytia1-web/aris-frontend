@@ -170,7 +170,7 @@ const [form, setForm] = useState({
     border border-blue-200
     p-4
     rounded-lg
-    mb-4
+    mb-1
   ">
 
     <div className="text-sm text-blue-700 font-medium">
@@ -184,7 +184,7 @@ const [form, setForm] = useState({
   </div>
            {/* STEP 1 */}
             {step === 1 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-3 animate-fade-in">
 
                 <select
                   value={form.unidade}
@@ -251,7 +251,7 @@ transition
 
             {/* STEP 2 */}
             {step === 2 && (
-              <div className="space-y-4 animate-fade-in">
+              <div className="space-y-3 animate-fade-in">
 
                 <select
                   value={form.tipo}
@@ -332,7 +332,7 @@ transition
             )}
 {/* STEP 3 */}
 {step === 3 && (
-  <div className="space-y-4 animate-fade-in">
+  <div className="space-y-3 animate-fade-in">
 
     <textarea
       placeholder="Descreva o problema..."
