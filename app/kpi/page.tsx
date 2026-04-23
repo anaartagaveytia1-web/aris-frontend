@@ -1,10 +1,56 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase"
 import GraficoRisco from "./components/GraficoRisco"
 
 export default function KPI() {
 
-  const risco = 72
+  const [dados, setDados] = useState<any[]>([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data, error } = await supabase
+        .from("eventos_risco")
+        .select("*")
+
+      if (error) {
+        console.error(error)
+        return
+      }
+
+      setDados(data || [])
+    }
+
+    fetchData()
+  }, [])
+  useEffect(() => {
+  const channel = supabase
+    .channel("eventos")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "eventos_risco"
+      },
+      payload => {
+        setDados(prev => [payload.new, ...prev])
+      }
+    )
+    .subscribe()
+
+  return () => {
+    supabase.removeChannel(channel)
+  }
+}, [])
+  const risco = Math.min(
+  100,
+  Math.round(
+    (dados.filter(d => d.risco === "alto").length * 10) +
+    (dados.length * 1.5)
+  )
+)
 
   const nivel =
     risco < 40 ? "baixo" :
@@ -16,7 +62,38 @@ export default function KPI() {
     medio: "border-yellow-500/30 risk-pulse-soft",
     alto: "border-red-500/30 risk-pulse"
   }
+  const totalRelatos = dados.length
+  const alertas = dados.length
+  const denuncias = dados.filter(d => d.tipo === "denuncia").length
+  const fadigaRaw = dados.filter(d => d.categoria === "pessoas").length
+  const fadiga = totalRelatos ? Math.round((fadigaRaw / totalRelatos) * 100) : 0
+  const ultimoEvento = dados
+  .filter(d => d.risco === "alto")
+  .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0]
 
+let diasSemAcidente = 0
+
+if (ultimoEvento) {
+  const hoje = new Date()
+  const dataEvento = new Date(ultimoEvento.created_at)
+
+  const diff = hoje.getTime() - dataEvento.getTime()
+
+  diasSemAcidente = Math.floor(diff / (1000 * 60 * 60 * 24))
+} 
+
+const positivos = dados.filter(d => d.risco !== "alto").length
+const negativos = dados.filter(d => d.risco === "alto").length
+
+const total = totalRelatos === 0 ? 1 : totalRelatos
+
+const percentualPositivo = Math.round((positivos / total) * 100)
+const percentualNegativo = Math.round((negativos / total) * 100)
+
+// simulação de status (até ter campo real no banco)
+const tratados = Math.floor(totalRelatos * 0.4)
+const andamento = Math.floor(totalRelatos * 0.3)
+const naoTratados = totalRelatos - tratados - andamento
   return (
     <div className="min-h-screen bg-[#020617] text-white flex justify-center
     bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
@@ -263,23 +340,27 @@ export default function KPI() {
 
 </div>
 
-        {/* SAFETY VOICE */}
-<div
-  className="
+       {/* SAFETY VOICE */}
+className={`
   relative
   bg-[#020617]
   p-4
   transition-all duration-300
 
-  border border-cyan-400/30
+  ${
+    percentualNegativo > 50
+      ? "border-red-500/40"
+      : percentualNegativo > 30
+      ? "border-yellow-500/40"
+      : "border-cyan-400/30"
+  }
 
   [clip-path:polygon(0_10px,10px_0,calc(100%-10px)_0,100%_10px,100%_calc(100%-10px),calc(100%-10px)_100%,10px_100%,0_calc(100%-10px))]
 
   shadow-[0_0_25px_rgba(34,211,238,0.2)]
   hover:shadow-[0_0_50px_rgba(34,211,238,0.7)]
   hover:scale-[1.02]
-  "
->
+`}
 
   {/* linha de energia */}
   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
@@ -293,18 +374,21 @@ export default function KPI() {
     {/* TOTAL */}
     <div className="flex justify-between">
       <span>Total de relatos</span>
-      <span className="text-blue-400 font-bold">120</span>
+      <span className="text-blue-400 font-bold">{totalRelatos}</span>
     </div>
 
     {/* POSITIVO */}
     <div>
       <div className="flex justify-between">
         <span>Positivo</span>
-        <span className="text-green-400">51%</span>
+        <span className="text-green-400">{percentualPositivo}%</span>
       </div>
 
       <div className="h-2 bg-[#020617] rounded mt-1">
-        <div className="h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded w-[51%] shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
+        <div
+          className="h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded shadow-[0_0_8px_rgba(34,197,94,0.8)]"
+          style={{ width: `${percentualPositivo}%` }}
+        />
       </div>
     </div>
 
@@ -312,30 +396,33 @@ export default function KPI() {
     <div>
       <div className="flex justify-between">
         <span>Negativo</span>
-        <span className="text-red-400">49%</span>
+        <span className="text-red-400">{percentualNegativo}%</span>
       </div>
 
       <div className="h-2 bg-[#020617] rounded mt-1">
-        <div className="h-2 bg-gradient-to-r from-red-400 to-orange-400 rounded w-[49%] shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
+        <div
+          className="h-2 bg-gradient-to-r from-red-400 to-orange-400 rounded shadow-[0_0_8px_rgba(239,68,68,0.8)]"
+          style={{ width: `${percentualNegativo}%` }}
+        />
       </div>
     </div>
 
-    {/* STATUS DE TRATAMENTO */}
+    {/* STATUS */}
     <div className="pt-2 border-t border-cyan-400/20 text-xs space-y-1">
 
       <div className="flex justify-between">
         <span className="text-green-400">✔ Tratados</span>
-        <span>40</span>
+        <span>{tratados}</span>
       </div>
 
       <div className="flex justify-between">
         <span className="text-yellow-400">⏳ Em andamento</span>
-        <span>20</span>
+        <span>{andamento}</span>
       </div>
 
       <div className="flex justify-between">
         <span className="text-red-400">✖ Não tratados</span>
-        <span>10</span>
+        <span>{naoTratados}</span>
       </div>
 
     </div>
@@ -343,18 +430,17 @@ export default function KPI() {
   </div>
 
 </div>
-</div>
         {/* 🟣 CENTRO */}
         <div className="col-span-6 flex flex-col gap-6">
 
           {/* KPIs */}
 <div className="grid grid-cols-4 gap-4">
   {[
-    { label: "ALERTAS", value: "128" },
-    { label: "DIAS INCIDENTE", value: "48" },
-    { label: "FADIGA", value: "69%" },
-    { label: "DENÚNCIAS", value: "120" }
-  ].map((kpi, i) => (
+  { label: "ALERTAS", value: alertas },
+  { label: "DIAS INCIDENTE", value: diasSemAcidente },
+  { label: "FADIGA", value: `${fadiga}%` },
+  { label: "DENÚNCIAS", value: denuncias }
+].map((kpi, i) => (
     <div
       key={i}
       className="
