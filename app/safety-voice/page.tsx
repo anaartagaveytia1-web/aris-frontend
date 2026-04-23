@@ -119,7 +119,6 @@ const [form, setForm] = useState({
     text-center
     shadow-sm
   ">
-
     <div className="text-green-600 text-xl font-bold mb-2">
       ✔ Enviado com sucesso
     </div>
@@ -127,51 +126,16 @@ const [form, setForm] = useState({
     <div className="text-sm text-gray-600">
       Obrigado por contribuir com a segurança.
     </div>
-
   </div>
 ) : (
-           {/* HEADER + TOPO ACOLHEDOR */}
-           {!enviado && (
   <>
-{/* 🔵 HEADER NOVO */}
-<div className="
-  bg-[#020617]
-  pt-10 pb-16
-  px-5
-  relative
-  overflow-hidden
-">
-
-  {/* glow */}
-  <div className="absolute w-[300px] h-[120px] bg-cyan-500/20 blur-[100px]" />
-
-  {/* LINHA ESQUERDA */}
+  {/* BOX */}
   <div className="
-    absolute left-0 top-1/2 w-[40%] h-[2px]
-    bg-gradient-to-r from-transparent via-cyan-400 to-cyan-500
-    opacity-60
-  " />
-
-  {/* LINHA DIREITA */}
-  <div className="
-    absolute right-0 top-1/2 w-[40%] h-[2px]
-    bg-gradient-to-l from-transparent via-cyan-400 to-cyan-500
-    opacity-60
-  " />
-
- {/* logo */}
-  <img
-    src="/logo-aris.png"
-    className="w-[220px] mx-auto relative z-10"
-  />
-</div>
-
-  {/* box acolhedor */}
-  <div className="
-  bg-blue-50
-  border border-blue-200
-  p-4
-  rounded-lg
+    bg-blue-50
+    border border-blue-200
+    p-4
+    rounded-lg
+    mb-4
   ">
 
     <div className="text-sm text-blue-700 font-medium">
@@ -181,29 +145,24 @@ const [form, setForm] = useState({
     <div className="text-xs text-blue-600 mt-1">
       Seu relato ajuda a melhorar a segurança no trabalho.
     </div>
-  </div>
-<div className="text-center mb-6 mt-2">
 
-  <div className="flex items-center justify-center gap-3 mb-2">
-    <div className="h-[1px] w-10 bg-blue-300" />
-    <div className="text-blue-500 text-xl">🎤</div>
-    <div className="h-[1px] w-10 bg-blue-300" />
   </div>
 
-  <h1 className="text-2xl font-bold text-[#0f172a]">
-    Safety Voice
-  </h1>
+  {/* TÍTULO */}
+  <div className="text-center mb-6">
 
-</div>
-<div className="
-mt-2
-bg-blue-50
-border border-blue-200
-p-4
-rounded-xl
-mb-5
-">
-</div>
+    <div className="flex items-center justify-center gap-3 mb-2">
+      <div className="h-[1px] w-10 bg-blue-300" />
+      <div className="text-blue-500 text-xl">🎤</div>
+      <div className="h-[1px] w-10 bg-blue-300" />
+    </div>
+
+    <h1 className="text-2xl font-bold text-[#0f172a]">
+      Safety Voice
+    </h1>
+
+  </div>
+
            {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-4 animate-fade-in">
@@ -440,23 +399,23 @@ transition
       </button>
 
     </div>
-    
+    </div>
+)}
 {/* FOOTER */}
-      <div className="text-center text-xs text-gray-400">
+<div className="text-center text-xs text-gray-400 mt-6">
 
-        <div className="text-blue-500 font-semibold">
-          ARIS
-        </div>
+  <div className="text-blue-500 font-semibold">
+    ARIS
+  </div>
 
-        <div className="opacity-70">
-          Safety System
-        </div>
+  <div className="opacity-70">
+    Safety System
+     </div>
+   </div>
+   </>   
+   )}
 
-      </div>
-
-    </>
+</div> {/* fecha CONTEÚDO INTERNO */}
+</div> {/* fecha MOLDURA */}
+</div> 
   )}
-
-</div>
-           )}
-           
