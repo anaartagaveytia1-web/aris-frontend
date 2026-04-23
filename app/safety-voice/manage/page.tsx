@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { supabase } from "@/lib/supabase"
 
 export default function SafetyVoiceManage() {
 
@@ -10,28 +11,61 @@ export default function SafetyVoiceManage() {
     dataFim: ""
   })
 
-  // MOCK (depois vem do banco)
-  const [relatos, setRelatos] = useState([
-    {
-      id: 1,
-      unidade: "Unidade A",
-      data: "2026-04-20",
-      descricao: "Falta de EPI",
-      status: "novo"
-    },
-    {
-      id: 2,
-      unidade: "Unidade B",
-      data: "2026-04-18",
-      descricao: "Excesso de carga de trabalho",
-      status: "em_analise"
-    }
-  ])
+  const [relatos, setRelatos] = useState<any[]>([])
 
-  function tratar(id: number) {
-    setRelatos(relatos.map(r =>
-      r.id === id ? { ...r, status: "tratado" } : r
-    ))
+  // 🔥 BUSCAR DO BANCO
+  useEffect(() => {
+    fetchRelatos()
+  }, [])
+
+  async function fetchRelatos() {
+    const { data, error } = await supabase
+      .from("safety_voice_reports")
+      .select("*")
+      .order("created_at", { ascending: false })
+
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    setRelatos(data || [])
+  }
+
+  // 🔵 TRATAR
+  async function tratar(id: string) {
+    const { error } = await supabase
+      .from("safety_voice_reports")
+      .update({ status: "em_analise" })
+      .eq("id", id)
+
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    fetchRelatos()
+  }
+
+  // 🟣 CRIAR AÇÃO
+  async function criarAcao(reportId: string) {
+    const { error } = await supabase
+      .from("safety_voice_actions")
+      .insert([
+        {
+          report_id: reportId,
+          acao: "Verificar situação no local",
+          responsavel: "Supervisor",
+          prazo: "2026-05-01"
+        }
+      ])
+
+    if (error) {
+      console.error(error)
+      return
+    }
+
+    alert("Ação criada!")
   }
 
   return (
@@ -71,35 +105,44 @@ export default function SafetyVoiceManage() {
       <div className="space-y-3">
 
         {relatos.map(relato => (
-          <div key={relato.id} className="
-            bg-[#0f172a]
-            border border-gray-700
-            p-4
-            rounded-xl
-            flex justify-between items-center
-          ">
+          <div
+            key={relato.id}
+            className="
+              bg-[#0f172a]
+              border border-gray-700
+              p-4
+              rounded-xl
+              flex justify-between items-center
+            "
+          >
 
             <div>
               <div className="font-semibold">{relato.descricao}</div>
               <div className="text-xs text-gray-400">
-                {relato.unidade} • {relato.data}
+                {relato.unidade} • {new Date(relato.created_at).toLocaleDateString()}
               </div>
               <div className="text-xs mt-1">
                 Status: {relato.status}
               </div>
             </div>
 
-            <button
-              onClick={() => tratar(relato.id)}
-              className="
-                bg-blue-600
-                px-4 py-2
-                rounded-lg
-                hover:bg-blue-500
-              "
-            >
-              Tratar
-            </button>
+            <div className="flex gap-2">
+
+              <button
+                onClick={() => tratar(relato.id)}
+                className="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500"
+              >
+                Tratar
+              </button>
+
+              <button
+                onClick={() => criarAcao(relato.id)}
+                className="bg-purple-600 px-3 py-2 rounded-lg text-sm hover:bg-purple-500"
+              >
+                Criar ação
+              </button>
+
+            </div>
 
           </div>
         ))}
