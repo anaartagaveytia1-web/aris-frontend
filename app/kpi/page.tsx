@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase"
 import GraficoRisco from "./components/GraficoRisco"
+import { useMobile } from "@/app/hooks/useMobile"
 import { useRouter } from "next/navigation"
 export default function KPI() {
   const router = useRouter()  
+  const isMobile = useMobile()
 
   const [dados, setDados] = useState<any[]>([])
 
@@ -95,6 +97,31 @@ const percentualNegativo = Math.round((negativos / total) * 100)
 const tratados = Math.floor(totalRelatos * 0.4)
 const andamento = Math.floor(totalRelatos * 0.3)
 const naoTratados = totalRelatos - tratados - andamento
+if (isMobile) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#020617] text-white">
+
+      <div className="text-center space-y-6">
+
+        <img src="/logo-aris.png" className="h-24 mx-auto" />
+
+        <h1 className="text-2xl font-bold text-cyan-400">
+          ARIS Safety Voice
+        </h1>
+
+        <button
+          onClick={() => router.push("/safety-voice")}
+          className="bg-cyan-500 px-8 py-4 rounded-xl text-black font-bold text-lg"
+        >
+          Registrar ocorrência
+        </button>
+
+      </div>
+
+    </div>
+  )
+}
+
   return (
     <div className="min-h-screen bg-[#020617] text-white flex justify-center
     bg-[radial-gradient(circle_at_center,rgba(0,200,255,0.08),transparent_70%)]">
