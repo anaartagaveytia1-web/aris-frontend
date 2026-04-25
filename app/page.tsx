@@ -1,14 +1,23 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useMobile } from "@/app/hooks/useMobile"
 import { Shield, Activity, BarChart3, Brain } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 
 export default function Home() {
   const router = useRouter()
+  const isMobile = useMobile()
+
   const [showLead, setShowLead] = useState(false)
   const [planoSelecionado, setPlanoSelecionado] = useState("")
+
+  useEffect(() => {
+    if (isMobile) {
+      router.replace("/app-home")
+    }
+  }, [isMobile])
 
   const [lead, setLead] = useState({
     nome: "",
