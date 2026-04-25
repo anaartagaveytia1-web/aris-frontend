@@ -9,9 +9,9 @@ export default function Home() {
   const isMobile = useMobile()
 
   useEffect(() => {
-    if (isMobile) {
+    if (isMobile && window.location.pathname === "/") {
       router.replace("/app-home")
-    } else {
+    } else if (!isMobile && window.location.pathname === "/") {
       router.replace("/planos")
     }
   }, [isMobile])
