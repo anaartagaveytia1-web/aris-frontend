@@ -211,14 +211,18 @@ export default function Hub() {
             <p className="text-xs text-gray-400">Documento completo</p>
           </div>
 
-          <div onClick={() => go("aris-dashboard.html")}
-            className={`${cardBase}
-            before:bg-[#5aa0ff]
-            hover:border-[#5aa0ff]
-            hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}>
-            <h3>KPI</h3>
-            <p className="text-xs text-gray-400">Unified executive risk intelligence dashboard</p>
-          </div>
+         <div 
+  onClick={() => router.push("/kpi")}
+  className={`${cardBase}
+    before:bg-[#5aa0ff]
+    hover:border-[#5aa0ff]
+    hover:shadow-[0_0_35px_rgba(90,160,255,0.35)]`}
+>
+  <h3>KPI</h3>
+  <p className="text-xs text-gray-400">
+    Unified executive risk intelligence dashboard
+  </p>
+</div>
 
           <div onClick={() => go("aris-ia.html")}
             className={`${cardBase}
