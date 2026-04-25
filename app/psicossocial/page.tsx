@@ -4,46 +4,19 @@ import { useState } from "react"
 
 export default function Psicossocial() {
 
-  // 🧠 STATE (sempre dentro da função)
-  const [contexto, setContexto] = useState({
-    empresa: "",
-    unidade: "",
-    responsavel: "",
-    data: "",
-    referencia: ""
-  })
-
-  // ⚙️ FUNÇÃO
-  function handleContexto(campo: string, valor: string) {
-    setContexto(prev => ({
-      ...prev,
-      [campo]: valor
-    }))
+  // 1️⃣ TYPES
+  type Pergunta = {
+    id: string
+    texto: string
   }
-  // 🔥 FORMULÁRIO
-const [respostas, setRespostas] = useState<Record<string, number>>({})
-const [etapa, setEtapa] = useState(-1) // 🔥 começa no contexto
-const [finalizado, setFinalizado] = useState(false)
 
-const secaoAtual = etapa >= 0 ? secoes[etapa] : null
-const perguntasAtuais = secaoAtual?.perguntas || []
-
-const respondeuTudo = perguntasAtuais.every(
-  (q) => respostas[q.id] !== undefined
-)
-
-type Pergunta = {
-  id: string
-  texto: string
-}
-
-type Secao = {
-  titulo: string
-  perguntas: Pergunta[]
-}
+  type Secao = {
+    titulo: string
+    perguntas: Pergunta[]
+  }
 
 const secoes: Secao[] = [
-  {
+{
     titulo: "Exigência e Carga",
     perguntas: [
       { id: "c1", texto: "A rotina exige execução em ritmo acelerado constante?" },
@@ -111,50 +84,121 @@ const secoes: Secao[] = [
   }
 ]
 
-  const handleChange = (id: string, valor: number) => {
-    setRespostas((prev: any) => ({
+// 🧠 STATE (sempre dentro da função)
+  const [contexto, setContexto] = useState({
+    empresa: "",
+    unidade: "",
+    responsavel: "",
+    data: "",
+    referencia: ""
+  })
+const [respostas, setRespostas] = useState<Record<string, number>>({})
+const [etapa, setEtapa] = useState(-1) // 🔥 começa no contexto
+const [finalizado, setFinalizado] = useState(false)
+
+  // ⚙️ FUNÇÃO
+  function handleContexto(campo: string, valor: string) {
+    setContexto(prev => ({
       ...prev,
-      [id]: valor
+      [campo]: valor
     }))
   }
-
-const calcularScore = () => {
-  const valores = Object.values(respostas) as number[]
-
-  if (valores.length === 0) return 0
-
-  const soma = valores.reduce((acc, v) => acc + v, 0)
-
-  const scorePositivo = (soma / (valores.length * 2)) * 100
-
-  const risco = 100 - scorePositivo
-
-  return risco
+  const handleChange = (id: string, valor: number) => {
+  setRespostas(prev => ({
+    ...prev,
+    [id]: valor
+  }))
 }
-const handleEnviar = async () => {
-  try {
-    console.log("Enviando dados...")
+  const calcularScore = () => {
+    const valores = Object.values(respostas) as number[]
+    if (!valores.length) return 0
 
-    // 👉 aqui depois entra o Supabase
-    console.log({
-      respostas,
-      score
-    })
-
-    alert("Resultado enviado com sucesso!")
-  } catch (err) {
-    console.error(err)
-    alert("Erro ao enviar")
+    const soma = valores.reduce((acc, v) => acc + v, 0)
+    return 100 - (soma / (valores.length * 2)) * 100
   }
-}
-const score = calcularScore()
 
-const perguntasAtuais = secoes[etapa].perguntas
+  const handleEnviar = () => {
+  console.log({
+    contexto,
+    respostas,
+    score: calcularScore()
+  })
+}
+
+// DERIVADOS
+const secaoAtual = etapa >= 0 ? secoes[etapa] : null
+const perguntasAtuais = secaoAtual?.perguntas || []
 
 const respondeuTudo = perguntasAtuais.every(
   (q) => respostas[q.id] !== undefined
 )
 
+const score = calcularScore()
+
+// 👉 variável que faltava
+const podeIniciar =
+  contexto.empresa &&
+  contexto.unidade &&
+  contexto.responsavel
+
+// 👉 TELA 1 (contexto)
+if (etapa === -1) {
+  return (
+    <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">
+
+      <div className="w-full max-w-3xl p-8 rounded-2xl border border-cyan-500/20
+      shadow-[0_0_60px_rgba(0,200,255,0.15)]">
+
+        <h1 className="text-2xl font-bold text-cyan-400 mb-6">
+          Radar Psicossocial 360°
+        </h1>
+
+        <div className="grid grid-cols-2 gap-4">
+
+          <input placeholder="Empresa"
+            value={contexto.empresa}
+            onChange={(e) => handleContexto("empresa", e.target.value)}
+            className="p-3 bg-[#020617] border border-cyan-400/30 rounded" />
+
+          <input placeholder="Unidade"
+            value={contexto.unidade}
+            onChange={(e) => handleContexto("unidade", e.target.value)}
+            className="p-3 bg-[#020617] border border-cyan-400/30 rounded" />
+
+          <input placeholder="Responsável"
+            value={contexto.responsavel}
+            onChange={(e) => handleContexto("responsavel", e.target.value)}
+            className="p-3 bg-[#020617] border border-cyan-400/30 rounded" />
+
+          <input type="date"
+            value={contexto.data}
+            onChange={(e) => handleContexto("data", e.target.value)}
+            className="p-3 bg-[#020617] border border-cyan-400/30 rounded" />
+
+          <input placeholder="Referência"
+            value={contexto.referencia}
+            onChange={(e) => handleContexto("referencia", e.target.value)}
+            className="p-3 bg-[#020617] border border-cyan-400/30 rounded col-span-2" />
+
+        </div>
+
+        <button
+          disabled={!podeIniciar}
+          onClick={() => setEtapa(0)}
+          className={`mt-6 w-full py-3 rounded-xl font-bold
+            ${podeIniciar
+              ? "bg-cyan-500 text-black"
+              : "bg-gray-600 cursor-not-allowed"}`}
+        >
+          Iniciar Avaliação
+        </button>
+
+      </div>
+    </div>
+  )
+}
+
+// 👉 TELA 2 (FORMULÁRIO + RESULTADO)
 return (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center">
     
@@ -182,10 +226,8 @@ return (
 
             <div className="w-full bg-gray-200 h-2 rounded-full">
               <div
-                className="bg-orange-500 h-2 rounded-full transition-all duration-300"
-                style={{
-                  width: `${((etapa + 1) / secoes.length) * 100}%`
-                }}
+                className="bg-orange-500 h-2 rounded-full"
+                style={{ width: `${((etapa + 1) / secoes.length) * 100}%` }}
               />
             </div>
           </div>
@@ -193,11 +235,13 @@ return (
           {/* FORM */}
           <div className="w-full bg-white p-5 rounded-xl shadow-md border">
 
-            <h2 className="text-lg font-semibold mb-4 text-orange-500">
-              {secoes[etapa].titulo}
-            </h2>
+            {secaoAtual && (
+              <h2 className="text-lg font-semibold mb-4 text-orange-500">
+                {secaoAtual.titulo}
+              </h2>
+            )}
 
-            {secoes[etapa].perguntas.map((q) => (
+            {perguntasAtuais.map((q) => (
               <div key={q.id} className="mb-4">
 
                 <p className="mb-2 font-medium">{q.texto}</p>
@@ -227,9 +271,8 @@ return (
           <div className="flex justify-between w-full">
 
             <button
-              disabled={etapa === 0}
               onClick={() => setEtapa(etapa - 1)}
-              className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+              className="px-4 py-2 bg-gray-200 rounded"
             >
               Voltar
             </button>
@@ -241,8 +284,7 @@ return (
                 className={`px-4 py-2 rounded text-white
                   ${respondeuTudo
                     ? "bg-orange-500"
-                    : "bg-gray-300 cursor-not-allowed"}
-                `}
+                    : "bg-gray-300"}`}
               >
                 Próximo
               </button>
