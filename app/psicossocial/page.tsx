@@ -2,6 +2,36 @@
 
 import { useState } from "react"
 
+export default function Psicossocial() {
+
+  // 🧠 STATE (sempre dentro da função)
+  const [contexto, setContexto] = useState({
+    empresa: "",
+    unidade: "",
+    responsavel: "",
+    data: "",
+    referencia: ""
+  })
+
+  // ⚙️ FUNÇÃO
+  function handleContexto(campo: string, valor: string) {
+    setContexto(prev => ({
+      ...prev,
+      [campo]: valor
+    }))
+  }
+  // 🔥 FORMULÁRIO
+const [respostas, setRespostas] = useState<Record<string, number>>({})
+const [etapa, setEtapa] = useState(-1) // 🔥 começa no contexto
+const [finalizado, setFinalizado] = useState(false)
+
+const secaoAtual = etapa >= 0 ? secoes[etapa] : null
+const perguntasAtuais = secaoAtual?.perguntas || []
+
+const respondeuTudo = perguntasAtuais.every(
+  (q) => respostas[q.id] !== undefined
+)
+
 type Pergunta = {
   id: string
   texto: string
@@ -80,12 +110,6 @@ const secoes: Secao[] = [
     ]
   }
 ]
-export default function Psicossocial() {
-
-const [respostas, setRespostas] = useState<Record<string, number>>({})
-const [etapa, setEtapa] = useState(0)
-const [finalizado, setFinalizado] = useState(false)
-const secaoAtual = secoes[etapa]
 
   const handleChange = (id: string, valor: number) => {
     setRespostas((prev: any) => ({

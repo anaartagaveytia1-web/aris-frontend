@@ -12,13 +12,7 @@ export default function Home() {
 
   const [showLead, setShowLead] = useState(false)
   const [planoSelecionado, setPlanoSelecionado] = useState("")
-
-  useEffect(() => {
-    if (isMobile) {
-      router.replace("/app-home")
-    }
-  }, [isMobile])
-
+  
   const [lead, setLead] = useState({
     nome: "",
     empresa: "",
