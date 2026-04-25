@@ -34,21 +34,20 @@ export default function AppHome() {
         <div className="flex flex-col gap-4">
 
           <button
-            onClick={() => router.push("/safety-voice")}
-            className="
-              bg-cyan-500
-              text-black
-              font-bold
-              py-4
-              rounded-xl
-              shadow-[0_0_20px_rgba(0,200,255,0.6)]
-              hover:scale-105
-              transition
-            "
-          >
-            🚀 Registrar ocorrência
-          </button>
-
+  onClick={() => router.push("/planos")}
+  className="
+    bg-gradient-to-r from-cyan-400 to-blue-500
+    text-black
+    font-bold
+    py-4
+    rounded-xl
+    shadow-[0_0_25px_rgba(0,200,255,0.6)]
+    hover:scale-105
+    transition
+  "
+>
+  🚀 Conhecer o ARISS
+</button>
           <button
             onClick={() => router.push("/login")}
             className="
