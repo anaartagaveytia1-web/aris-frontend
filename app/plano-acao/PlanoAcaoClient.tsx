@@ -13,15 +13,16 @@ export default function PlanoAcaoClient() {
   const [relato, setRelato] = useState<any>(null)
 
   const [form, setForm] = useState({
-    acao: "",
-    responsavel: "",
-    prazo: ""
-  })
-
-  const [filtro, setFiltro] = useState({
-    origem: "",
+    empresa: "",
     unidade: "",
-    status: ""
+    turno: "",
+    area: "",
+    local: "",
+    descricao: "",
+    urgencia: "",
+    responsavel: "",
+    email: "",
+    prazo: ""
   })
 
   // 🔥 BUSCAR RELATO
@@ -44,10 +45,7 @@ export default function PlanoAcaoClient() {
   async function fetchAcoes() {
     const { data, error } = await supabase
       .from("safety_voice_actions")
-      .select(`
-        *,
-        eventos_risco (*)
-      `)
+      .select("*")
       .order("created_at", { ascending: false })
 
     if (error) {
@@ -61,8 +59,14 @@ export default function PlanoAcaoClient() {
   // 🔥 CRIAR AÇÃO
   async function criarAcao() {
 
-    if (!form.acao || !form.responsavel || !form.prazo) {
-      alert("Preencha todos os campos")
+    if (
+      !form.empresa ||
+      !form.unidade ||
+      !form.descricao ||
+      !form.responsavel ||
+      !form.prazo
+    ) {
+      alert("Preencha os campos obrigatórios")
       return
     }
 
@@ -70,9 +74,15 @@ export default function PlanoAcaoClient() {
       .from("safety_voice_actions")
       .insert([
         {
-          report_id: relatoId,
-          acao: form.acao,
+          empresa: form.empresa,
+          unidade: form.unidade,
+          turno: form.turno,
+          area: form.area,
+          local: form.local,
+          descricao: form.descricao,
+          urgencia: form.urgencia,
           responsavel: form.responsavel,
+          email_responsavel: form.email,
           prazo: form.prazo,
           status: "pendente"
         }
@@ -80,17 +90,25 @@ export default function PlanoAcaoClient() {
 
     if (error) {
       console.error(error)
+      alert("Erro ao salvar")
       return
     }
 
-    if (relatoId) {
-      await supabase
-        .from("eventos_risco")
-        .update({ status: "andamento" })
-        .eq("id", relatoId)
-    }
+    alert("Plano criado com sucesso!")
 
-    setForm({ acao: "", responsavel: "", prazo: "" })
+    setForm({
+      empresa: "",
+      unidade: "",
+      turno: "",
+      area: "",
+      local: "",
+      descricao: "",
+      urgencia: "",
+      responsavel: "",
+      email: "",
+      prazo: ""
+    })
+
     fetchAcoes()
   }
 
@@ -104,16 +122,6 @@ export default function PlanoAcaoClient() {
     fetchAcoes()
   }
 
-  // 🔍 FILTRO
-  const acoesFiltradas = acoes.filter(a => {
-
-    if (filtro.origem && a.eventos_risco?.origem !== filtro.origem) return false
-    if (filtro.unidade && a.eventos_risco?.unidade !== filtro.unidade) return false
-    if (filtro.status && a.status !== filtro.status) return false
-
-    return true
-  })
-
   return (
     <div className="min-h-screen bg-[#020617] text-white p-6">
 
@@ -121,7 +129,7 @@ export default function PlanoAcaoClient() {
         Plano de Ação
       </h1>
 
-      {/* 🔵 RELATO */}
+      {/* 🔵 RELATO (OPCIONAL) */}
       {relato && (
         <div className="bg-[#0f172a] p-4 rounded-xl mb-6 border border-purple-500/30">
           <div className="text-purple-400 text-sm">
@@ -138,116 +146,170 @@ export default function PlanoAcaoClient() {
         </div>
       )}
 
-      {/* 🔍 FILTROS */}
-      <div className="grid grid-cols-3 gap-3 mb-6">
-
-        <select
-          className="p-2 rounded bg-[#0f172a]"
-          onChange={e => setFiltro({ ...filtro, origem: e.target.value })}
-        >
-          <option value="">Origem</option>
-          <option value="safety_voice">Safety Voice</option>
-          <option value="psicossocial">Psicossocial</option>
-          <option value="ambiente">Ambiente</option>
-          <option value="lideranca">Liderança</option>
-        </select>
-
-        <input
-          placeholder="Unidade"
-          className="p-2 rounded bg-[#0f172a]"
-          onChange={e => setFiltro({ ...filtro, unidade: e.target.value })}
-        />
-
-        <select
-          className="p-2 rounded bg-[#0f172a]"
-          onChange={e => setFiltro({ ...filtro, status: e.target.value })}
-        >
-          <option value="">Status</option>
-          <option value="pendente">Pendente</option>
-          <option value="concluido">Concluído</option>
-        </select>
-
-      </div>
-
       {/* 🟣 FORM */}
-      <div className="grid grid-cols-3 gap-3 mb-6">
+      <div className="bg-[#0f172a] p-4 rounded-xl mb-6 border border-gray-700">
 
-        <input
-          placeholder="Ação"
-          value={form.acao}
-          onChange={e => setForm({ ...form, acao: e.target.value })}
-          className="p-2 rounded bg-[#0f172a]"
-        />
+        <div className="grid grid-cols-3 gap-3">
 
-        <input
-          placeholder="Responsável"
-          value={form.responsavel}
-          onChange={e => setForm({ ...form, responsavel: e.target.value })}
-          className="p-2 rounded bg-[#0f172a]"
-        />
+          <input
+            placeholder="Empresa"
+            value={form.empresa}
+            onChange={e => setForm({ ...form, empresa: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
 
-        <input
-          type="date"
-          value={form.prazo}
-          onChange={e => setForm({ ...form, prazo: e.target.value })}
-          className="p-2 rounded bg-[#0f172a]"
-        />
+          <input
+            placeholder="Unidade"
+            value={form.unidade}
+            onChange={e => setForm({ ...form, unidade: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+          <select
+            value={form.turno}
+            onChange={e => setForm({ ...form, turno: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          >
+            <option value="">Turno</option>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option>Noite</option>
+          </select>
+
+          <input
+            placeholder="Área (CIPA, TST...)"
+            value={form.area}
+            onChange={e => setForm({ ...form, area: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+          <input
+            placeholder="Local (máquina, piso...)"
+            value={form.local}
+            onChange={e => setForm({ ...form, local: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+          <select
+            value={form.urgencia}
+            onChange={e => setForm({ ...form, urgencia: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          >
+            <option value="">Urgência</option>
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+            <option value="critica">Crítica</option>
+          </select>
+
+          <textarea
+            placeholder="Descrição do problema"
+            value={form.descricao}
+            onChange={e => setForm({ ...form, descricao: e.target.value })}
+            className="col-span-3 p-2 rounded bg-[#020617]"
+          />
+
+          <input
+            placeholder="Responsável"
+            value={form.responsavel}
+            onChange={e => setForm({ ...form, responsavel: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+          <input
+            placeholder="Email do responsável"
+            value={form.email}
+            onChange={e => setForm({ ...form, email: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+          <input
+            type="date"
+            value={form.prazo}
+            onChange={e => setForm({ ...form, prazo: e.target.value })}
+            className="p-2 rounded bg-[#020617]"
+          />
+
+        </div>
+
+        <div className="mt-4">
+          <button
+            onClick={criarAcao}
+            className="bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-500"
+          >
+            Criar plano de ação
+          </button>
+        </div>
 
       </div>
-
-      <button
-        onClick={criarAcao}
-        className="bg-purple-600 px-4 py-2 rounded-lg mb-6 hover:bg-purple-500"
-      >
-        Criar ação
-      </button>
 
       {/* 📋 LISTA */}
       <div className="space-y-3">
 
-        {acoesFiltradas.map(acao => (
-          <div
-            key={acao.id}
-            className="bg-[#0f172a] p-4 rounded-xl border border-gray-700"
-          >
+        {acoes.map(acao => {
 
-            <div className="flex justify-between">
+          const hoje = new Date()
+          const prazo = new Date(acao.prazo)
 
-              <div>
-                <div className="font-semibold">
-                  {acao.acao}
+          const atrasado =
+            acao.status !== "concluido" && prazo < hoje
+
+          return (
+            <div
+              key={acao.id}
+              className="bg-[#0f172a] p-4 rounded-xl border border-gray-700"
+            >
+
+              <div className="flex justify-between">
+
+                <div>
+
+                  <div className="font-semibold">
+                    {acao.descricao}
+                  </div>
+
+                  <div className="text-xs text-gray-400">
+                    {acao.responsavel} • {acao.prazo}
+                  </div>
+
+                  <div className="text-xs text-blue-400 mt-1">
+                    {acao.unidade} • {acao.area}
+                  </div>
+
+                  <div className="text-xs text-purple-400 mt-1">
+                    Urgência: {acao.urgencia}
+                  </div>
+
                 </div>
 
-                <div className="text-xs text-gray-400">
-                  {acao.responsavel} • {acao.prazo}
-                </div>
+                {acao.status !== "concluido" && (
+                  <button
+                    onClick={() => concluirAcao(acao.id)}
+                    className="bg-green-600 px-3 py-2 rounded-lg text-sm"
+                  >
+                    Concluir
+                  </button>
+                )}
 
-                <div className="text-xs text-blue-400 mt-1">
-                  {acao.eventos_risco?.unidade} • {acao.eventos_risco?.origem}
-                </div>
               </div>
 
-              {acao.status !== "concluido" && (
-                <button
-                  onClick={() => concluirAcao(acao.id)}
-                  className="bg-green-600 px-3 py-2 rounded-lg text-sm"
-                >
-                  Concluir
-                </button>
-              )}
+              <div className={`text-xs mt-2 ${
+                acao.status === "concluido"
+                  ? "text-green-400"
+                  : atrasado
+                  ? "text-red-500"
+                  : "text-yellow-400"
+              }`}>
+                {acao.status === "concluido"
+                  ? "concluído"
+                  : atrasado
+                  ? "atrasado"
+                  : "pendente"}
+              </div>
 
             </div>
-
-            <div className={`text-xs mt-2 ${
-              acao.status === "concluido"
-                ? "text-green-400"
-                : "text-yellow-400"
-            }`}>
-              {acao.status}
-            </div>
-
-          </div>
-        ))}
+          )
+        })}
 
       </div>
 
