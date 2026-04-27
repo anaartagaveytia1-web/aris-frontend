@@ -81,10 +81,12 @@ const [form, setForm] = useState({
       {
         cliente: "Safety Tech SC",
         unidade: form.unidade,
+        turno: form.turno,
         tipo: form.tipo,
         categoria: form.categoria,
         risco: form.risco,
-        descricao: form.descricao
+        descricao: form.descricao,
+        status: "novo"
       }
     ])
 
