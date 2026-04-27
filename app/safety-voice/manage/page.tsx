@@ -5,32 +5,62 @@ import { supabase } from "@/lib/supabase"
 
 export default function SafetyVoiceManage() {
 
-  const [filtro, setFiltro] = useState({
-    unidade: "",
-    dataInicio: "",
-    dataFim: ""
-  })
+const [filtro, setFiltro] = useState({
+  empresa: "",
+  unidade: "",
+  status: "",
+  turno: "",
+  dataInicio: "",
+  dataFim: ""
+})
 
   const [relatos, setRelatos] = useState<any[]>([])
 
   // 🔥 BUSCAR DO BANCO
-  useEffect(() => {
-    fetchRelatos()
-  }, [])
+ useEffect(() => {
+  fetchRelatos()
+}, [filtro])
 
   async function fetchRelatos() {
-    const { data, error } = await supabase
-      .from("safety_voice_reports")
-      .select("*")
-      .order("created_at", { ascending: false })
 
-    if (error) {
-      console.error(error)
-      return
-    }
+  let query = supabase
+    .from("eventos_risco")
+    .select("*")
+    .order("created_at", { ascending: false })
 
-    setRelatos(data || [])
+  if (filtro.empresa) {
+    query = query.ilike("cliente", `%${filtro.empresa}%`)
   }
+
+  if (filtro.unidade) {
+    query = query.eq("unidade", filtro.unidade)
+  }
+
+  if (filtro.status) {
+    query = query.eq("status", filtro.status)
+  }
+
+  if (filtro.turno) {
+    query = query.eq("turno", filtro.turno)
+  }
+
+  if (filtro.dataInicio) {
+    query = query.gte("created_at", filtro.dataInicio)
+  }
+
+  if (filtro.dataFim) {
+    query = query.lte("created_at", filtro.dataFim)
+  }
+
+  const { data, error } = await query
+
+  if (error) {
+    console.error(error)
+    return
+  }
+
+  setRelatos(data || [])
+}
 
   // 🔵 TRATAR
   async function tratar(id: string) {
@@ -100,7 +130,63 @@ export default function SafetyVoiceManage() {
         />
 
       </div>
+       <div className="grid grid-cols-6 gap-3 mb-6">
 
+  {/* EMPRESA */}
+  <input
+    placeholder="Empresa"
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, empresa: e.target.value })}
+  />
+
+  {/* UNIDADE */}
+  <select
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, unidade: e.target.value })}
+  >
+    <option value="">Unidade</option>
+    <option>Unidade A</option>
+    <option>Unidade B</option>
+  </select>
+
+  {/* STATUS */}
+  <select
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, status: e.target.value })}
+  >
+    <option value="">Status</option>
+    <option value="novo">Novo</option>
+    <option value="em_analise">Em análise</option>
+    <option value="andamento">Andamento</option>
+    <option value="tratado">Tratado</option>
+  </select>
+
+  {/* TURNO */}
+  <select
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, turno: e.target.value })}
+  >
+    <option value="">Turno</option>
+    <option>Manhã</option>
+    <option>Tarde</option>
+    <option>Noite</option>
+  </select>
+
+  {/* DATA INÍCIO */}
+  <input
+    type="date"
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, dataInicio: e.target.value })}
+  />
+
+  {/* DATA FIM */}
+  <input
+    type="date"
+    className="p-2 rounded bg-[#0f172a] border border-gray-700"
+    onChange={e => setFiltro({ ...filtro, dataFim: e.target.value })}
+  />
+
+</div>
       {/* LISTA */}
       <div className="space-y-3">
 
@@ -141,7 +227,21 @@ export default function SafetyVoiceManage() {
               >
                 Criar ação
               </button>
-
+             <button
+  onClick={() =>
+    setFiltro({
+      empresa: "",
+      unidade: "",
+      status: "",
+      turno: "",
+      dataInicio: "",
+      dataFim: ""
+    })
+  }
+  className="bg-gray-700 px-4 py-2 rounded-lg"
+>
+  Limpar filtros
+</button>
             </div>
 
           </div>
