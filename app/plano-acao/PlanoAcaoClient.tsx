@@ -88,11 +88,11 @@ export default function PlanoAcaoClient() {
         }
       ])
 
-    if (error) {
-      console.error(error)
-      alert("Erro ao salvar")
-      return
-    }
+   if (error) {
+  console.error("ERRO REAL:", error)
+  alert(error.message)
+  return
+}
 
     alert("Plano criado com sucesso!")
 
