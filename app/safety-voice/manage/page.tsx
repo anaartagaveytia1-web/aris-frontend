@@ -97,7 +97,11 @@ const [filtro, setFiltro] = useState({
 
     alert("Ação criada!")
   }
-
+  function getPrioridade(relato: any) {
+  if (relato.risco === "alto") return 3
+  if (relato.risco === "medio") return 2
+  return 1
+}
   return (
     <div className="min-h-screen bg-[#020617] text-white p-6">
 
@@ -209,12 +213,22 @@ const [filtro, setFiltro] = useState({
 
 {/* LISTA */}
 <div className="space-y-3">
-  
+
 </div>
       {/* LISTA */}
       <div className="space-y-3">
 
-        {relatos.map(relato => (
+        {[...relatos]
+  .sort((a, b) => {
+    const prioridade =
+      (b.risco === "alto" ? 3 : b.risco === "medio" ? 2 : 1) -
+      (a.risco === "alto" ? 3 : a.risco === "medio" ? 2 : 1)
+
+    if (prioridade !== 0) return prioridade
+
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  })
+  .map(relato => (
           <div
             key={relato.id}
             className="
