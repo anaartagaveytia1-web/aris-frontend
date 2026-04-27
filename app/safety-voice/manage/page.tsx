@@ -187,6 +187,30 @@ const [filtro, setFiltro] = useState({
   />
 
 </div>
+{/* FILTROS */}
+<div>...filtros...</div>
+
+{/* 🔥 CONTADOR AQUI */}
+<div className="flex gap-4 mb-4 text-sm">
+
+  <div className="text-red-400">
+    Novos: {relatos.filter(r => r.status === "novo").length}
+  </div>
+
+  <div className="text-yellow-400">
+    Em análise: {relatos.filter(r => r.status === "em_analise").length}
+  </div>
+
+  <div className="text-green-400">
+    Tratados: {relatos.filter(r => r.status === "tratado").length}
+  </div>
+
+</div>
+
+{/* LISTA */}
+<div className="space-y-3">
+  
+</div>
       {/* LISTA */}
       <div className="space-y-3">
 
@@ -203,13 +227,24 @@ const [filtro, setFiltro] = useState({
           >
 
             <div>
-              <div className="font-semibold">{relato.descricao}</div>
+              <div className={`font-semibold ${
+  relato.risco === "alto" ? "text-red-400" :
+  relato.risco === "medio" ? "text-yellow-400" :
+  "text-green-400"
+}`}>
+  {relato.descricao}
+</div>
               <div className="text-xs text-gray-400">
                 {relato.unidade} • {new Date(relato.created_at).toLocaleDateString()}
               </div>
-              <div className="text-xs mt-1">
-                Status: {relato.status}
-              </div>
+              <div className={`text-xs mt-1 ${
+  relato.status === "novo" ? "text-red-400" :
+  relato.status === "em_analise" ? "text-yellow-400" :
+  relato.status === "andamento" ? "text-orange-400" :
+  "text-green-400"
+}`}>
+  Status: {relato.status}
+</div>
             </div>
 
             <div className="flex gap-2">
