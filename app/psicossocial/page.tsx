@@ -146,8 +146,15 @@ if (etapa === -1) {
   return (
     <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">
 
-      <div className="w-full max-w-3xl p-8 rounded-2xl border border-cyan-500/20
-      shadow-[0_0_60px_rgba(0,200,255,0.15)]">
+      <div className="
+  w-[360px]
+  h-[720px]
+  bg-[#f8fafc]
+  rounded-[30px]
+  shadow-[0_20px_60px_rgba(0,0,0,0.2)]
+  overflow-hidden
+  border border-gray-300
+">
 
         <h1 className="text-2xl font-bold text-cyan-400 mb-6">
           Radar Psicossocial 360°
@@ -224,14 +231,39 @@ return (
               <span>{Math.round(((etapa + 1) / secoes.length) * 100)}%</span>
             </div>
 
-            <div className="w-full bg-gray-200 h-2 rounded-full">
-              <div
-                className="bg-orange-500 h-2 rounded-full"
-                style={{ width: `${((etapa + 1) / secoes.length) * 100}%` }}
-              />
-            </div>
-          </div>
+            <div className="px-5 pt-4">
+  
+  {/* TEXTO DE PROGRESSO */}
+  <div className="flex justify-between text-xs text-gray-400 mb-1">
+    <span>Etapa {etapa + 1} de {secoes.length}</span>
+    <span>{Math.round(((etapa + 1) / secoes.length) * 100)}%</span>
+  </div>
 
+  {/* BARRA */}
+  <div className="w-full bg-gray-200 h-2 rounded-full">
+    <div
+      className="
+        bg-gradient-to-r 
+        from-blue-600 
+        to-cyan-400 
+        h-2 
+        rounded-full 
+        transition-all 
+        duration-500
+      "
+      style={{ width: `${((etapa + 1) / secoes.length) * 100}%` }}
+    />
+  </div>
+
+</div>
+ <div className="text-center text-xs text-gray-500 mt-2">
+    Índice de risco atual: 
+    <span className="font-bold text-blue-600 ml-1">
+      {score.toFixed(0)}%
+    </span>
+  </div>
+
+</div>
           {/* FORM */}
           <div className="w-full bg-white p-5 rounded-xl shadow-md border">
 
